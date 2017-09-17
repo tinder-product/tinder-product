@@ -3,6 +3,7 @@ const bcryptSalt = 10;
 const path = require('path');
 const passport = require('passport');
 const router = require('express').Router();
+const User = require("../models/User");
 
 const multer = require('multer');
 const destination = path.join(__dirname, "../public/avatar/");
@@ -13,8 +14,8 @@ router.get("/signup", (req, res, next) => {
 });
 
 router.post("/signup", upload.single('avatar'), (req, res, next) => {
-  const first_name = req.body.first-name;
-  const last_name = req.body.last-name;
+  const first_name = req.body.first_name;
+  const last_name = req.body.last_name;
   const username = req.body.username;
   const email = req.body.email;
   const password = req.body.password;
@@ -40,7 +41,7 @@ router.post("/signup", upload.single('avatar'), (req, res, next) => {
       last_name: last_name,
       username: username,
       email: email,
-      password: password,
+      password: hashPass,
       avatar: '/avatar/${req.file.filename}',
       phone: phone,
     })
@@ -48,6 +49,26 @@ router.post("/signup", upload.single('avatar'), (req, res, next) => {
     .then(user => res.redirect('/'))
     .catch(e => res.render("auth/signup", { message: "Something went wrong" }));
   });
+});
+
+router.get('/login',(req,res) =>{
+  res.render('auth/login');
+});
+
+router.get('/dasboard',(req,res) =>{
+  res.render('dasboard');
+});
+
+router.post("/login", passport.authenticate("local", {
+  successRedirect: "/dasboard",
+  failureRedirect: "/login",
+  failureFlash: true,
+  passReqToCallback: true
+}));
+
+router.post('/logout',(req,res) =>{
+  req.logout();
+  res.redirect("/");
 });
 
 module.exports = router;

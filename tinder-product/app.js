@@ -6,6 +6,13 @@ const cookieParser = require('cookie-parser');
 const bodyParser   = require('body-parser');
 const expressLayouts      = require('express-ejs-layouts');
 const mongoose     = require('mongoose');
+const session = require("express-session");
+const passport = require("passport");
+const MongoStore = require("connect-mongo")(session);
+const flash = require("connect-flash");
+const LocalStrategy = require("passport-local").Strategy;
+const index = require('./routes/index');
+const auth = require('./routes/auth');
 
 if (process.env.NODE_ENV === 'development') {
   require('dotenv').config();
@@ -21,6 +28,29 @@ app.set('view engine', 'ejs');
 app.set('layout', 'layouts/main-layout');
 app.use(expressLayouts);
 
+app.use(flash());
+
+app.use((req,res,next) =>{
+  res.locals.title = "Auth example";
+  next();
+});
+
+app.use(session({
+  secret: "our-passport-local-strategy-app",
+  resave: true,
+  saveUninitialized: true,
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
+
+require('./passport/serializers');
+require('./passport/local');
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 // default value for title local
 app.locals.title = 'tinder-product';
 
@@ -32,8 +62,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-const index = require('./routes/index');
-const auth = require('./routes/auth');
 app.use('/', index);
 app.use('/', auth);
 
