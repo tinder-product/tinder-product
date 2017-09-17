@@ -1,19 +1,19 @@
-const bcrypt = require("bcrypt");
+const bcrypt     = require("bcrypt");
 const bcryptSalt = 10;
-const path = require('path');
-const passport = require('passport');
-const router = require('express').Router();
-const User = require("../models/User");
+const path       = require('path');
+const passport   = require('passport');
+const router     = require('express').Router();
+const User       = require("../models/User");
+const PATHS      = require("./paths");
+const multer     = require('multer');
+const destination= path.join(__dirname, "../public/avatar/");
+const upload     = multer({dest : destination});
 
-const multer = require('multer');
-const destination = path.join(__dirname, "../public/avatar/");
-const upload = multer({dest : destination});
-
-router.get("/signup", (req, res, next) => {
+router.get(PATHS.SIGNUP_PATH, (req, res, next) => {
   res.render("auth/signup");
 });
 
-router.post("/signup", upload.single('avatar'), (req, res, next) => {
+router.post(PATHS.SIGNUP_PATH, upload.single('avatar'), (req, res, next) => {
   const first_name = req.body.first_name;
   const last_name = req.body.last_name;
   const username = req.body.username;
@@ -51,24 +51,24 @@ router.post("/signup", upload.single('avatar'), (req, res, next) => {
   });
 });
 
-router.get('/login',(req,res) =>{
+router.get(PATHS.LOGIN_PATH,(req,res) =>{
   res.render('auth/login');
 });
 
-router.get('/dasboard',(req,res) =>{
+router.get(PATHS.DASBOARD_PATH,(req,res) =>{
   res.render('dasboard');
 });
 
-router.post("/login", passport.authenticate("local", {
-  successRedirect: "/dasboard",
-  failureRedirect: "/login",
+router.post(PATHS.LOGIN_PATH, passport.authenticate("local", {
+  successRedirect: PATHS.DASBOARD_PATH,
+  failureRedirect: PATHS.LOGIN_PATH,
   failureFlash: true,
   passReqToCallback: true
 }));
 
-router.post('/logout',(req,res) =>{
+router.get(PATHS.LOGOUT_PATH,(req,res) =>{
   req.logout();
-  res.redirect("/");
+  res.redirect(PATHS.ROOT_PATH);
 });
 
 module.exports = router;
