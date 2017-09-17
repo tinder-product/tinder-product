@@ -10,19 +10,15 @@ const mongoose     = require('mongoose');
 const passport = require("passport");
 const flash = require("connect-flash");
 
-
-
-
-
-
 module.exports = function (app){
+
   app.set('views', path.join(__dirname, '../views'));
   app.set('view engine', 'ejs');
   app.set('layout', 'layouts/main-layout');
   app.use(expressLayouts);
 
   app.use((req,res,next) =>{
-    res.locals.title = "Auth example";
+    res.locals.title = "tinder-product";
     next();
   });
 
@@ -34,7 +30,7 @@ module.exports = function (app){
 
   app.use(flash());
   app.use(session({
-    secret: "our-passport-local-strategy-app",
+    secret: process.env.SECRET,
     resave: true,
     saveUninitialized: true,
     store: new MongoStore({
