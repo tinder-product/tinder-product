@@ -4,4 +4,4 @@ module.exports = {
   LOGOUT_PATH: '/logout',
   SIGNUP_PATH: '/signup',
   DASBOARD_PATH: '/dasboard'
-};
+}

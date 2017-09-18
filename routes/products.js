@@ -80,8 +80,4 @@ router.get('/products/:id/delete', (req, res, next) => {
   .catch( err => next(err))
 })
 
-
-
-
-
 module.exports = router
