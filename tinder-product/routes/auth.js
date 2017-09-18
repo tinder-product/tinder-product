@@ -43,7 +43,7 @@ router.post(PATHS.SIGNUP_PATH, upload.single('avatar'), ensureLoggedOut(), (req,
       username: username,
       email: email,
       password: hashPass,
-      avatar: '/avatar/${req.file.filename}',
+      avatar: `/avatar/${req.file.filename}`,
       phone: phone,
     })
     .save()
