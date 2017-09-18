@@ -6,6 +6,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 mongoose.connect(process.env.MONGODB_URI);
 
+
 require('./config/express')(app);
 require('./config/session')(app);
 require('./passport/serializers');

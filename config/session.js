@@ -8,7 +8,7 @@ const passport     = require("passport");
 module.exports = function (app){
   app.use(flash());
   app.use(session({
-    secret: process.env.SECRET,
+    secret: "vero&santi",
     resave: true,
     saveUninitialized: true,
     store: new MongoStore({
