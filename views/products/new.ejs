@@ -1,0 +1,17 @@
+<h2><%= title %></h2>
+<form action="/products/new" method="POST" id="form-products" enctype="multipart/form-data">
+
+  <label for="name">Name</label>
+  <input id="name" type="text" name="name" placeholder="Name">
+  <br><br>
+  <label for="description">Description</label>
+  <input id="description" type="text" name="description" placeholder="My product is...">
+  <br><br>
+  <label for="avatar">Avatar</label>
+  <input id="avatar" type="file" name="avatar">
+  <br><br>
+
+
+  <button>Create product</button>
+
+</form>

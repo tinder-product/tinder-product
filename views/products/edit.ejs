@@ -1,0 +1,18 @@
+<h2><%= title %></h2>
+
+<form action="/products/<%= productId %>/edit" method="POST" id="form-products" enctype="multipart/form-data">
+
+  <label for="name">Name</label>
+  <input id="name" type="text" name="name" value="<%= product.name %>">
+  <br><br>
+  <label for="description">Description</label>
+  <input id="description" type="text" name="description" value="<%= product.description %>">
+  <br><br>
+  <label for="avatar">Avatar</label>
+  <input id="avatar" type="file" name="avatar" value="<%= product.avatar %>">
+  <br><br>
+
+
+  <button>Modifty product</button>
+
+</form>
