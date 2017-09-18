@@ -3,5 +3,6 @@ module.exports = {
   LOGIN_PATH: '/login',
   LOGOUT_PATH: '/logout',
   SIGNUP_PATH: '/signup',
-  DASBOARD_PATH:'/dasboard',
+  DASBOARD_PATH:'/dasboard'
+  
 };

@@ -72,4 +72,32 @@ router.get(PATHS.LOGOUT_PATH, ensureLoggedIn(), (req,res) =>{
   res.redirect(PATHS.ROOT_PATH);
 });
 
+// UPDATE: Print update form
+router.get('/:id/edit', (req, res, next) => {
+  const userId = req.params.id;
+  User.findById(userId, (err, user) => {
+    if (err) { return next(err); }
+    res.render('profile/user_edit', { title:'Edit form', user: user });
+  });
+});
+
+// // UPDATE: Update the object on DB
+// router.post('/:id/edit', (req, res, next) => {
+//   const userId = req.params.id;
+//
+//   const updates = {
+//     first_name: req.body.first_name,
+//     last_name: req.body.last_name,
+//     username: req.body.username,
+//     email: req.body.username,
+//     avatar: `${req.file.filename}`,
+//     phone: req.body.username,
+//   };
+//   User.findByIdAndUpdate(productId, updates, (err, product) => {
+//     if (err){ return next(err); }
+//     return res.redirect(`/${userId}`);
+//   });
+// });
+
+
 module.exports = router;
