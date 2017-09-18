@@ -43,7 +43,7 @@ router.post(PATHS.SIGNUP_PATH, upload.single('avatar'), ensureLoggedOut(), (req,
       username: username,
       email: email,
       password: hashPass,
-      avatar: `/avatar/${req.file.filename}`,
+      avatar: `${req.file.filename}`,
       phone: phone,
     })
     .save()
@@ -57,7 +57,7 @@ router.get(PATHS.LOGIN_PATH, ensureLoggedOut(), (req,res) =>{
 });
 
 router.get(PATHS.DASBOARD_PATH, ensureLoggedIn(), (req,res) =>{
-  res.render('dasboard');
+  res.render('profile/dasboard', {user:req.user});
 });
 
 router.post(PATHS.LOGIN_PATH, ensureLoggedOut(), passport.authenticate("local", {
