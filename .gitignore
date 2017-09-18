@@ -31,4 +31,5 @@ npm-debug.log
 node_modules
 .env
 .jshintrc
-./public/avatar
+
+/public/avatar
