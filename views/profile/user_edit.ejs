@@ -1,4 +1,4 @@
-<h2>Signup</h2>
+<h2><%= titleE %></h2>
 
 <form action="/<%= user._id %>/edit/" method="POST" enctype="multipart/form-data">
 
@@ -26,12 +26,10 @@
   <% } %>
   <br><br>
 
-  <button>Create account</button>
+  <button>Edit account</button>
 
   <p class="account-message">
-    Do you already have an account?
-    <a href="/login">Login</a>
-    <a href="/dasboard">volver</a>
+    <a href="/profile">volver</a>
     <a href="/">Home</a>
   </p>
 </form>

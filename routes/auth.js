@@ -11,7 +11,7 @@ const destination= path.join(__dirname, "../public/avatar")
 const upload     = multer({dest : destination})
 
 router.get(PATHS.SIGNUP_PATH, ensureLoggedOut(), (req, res, next) => {
-  res.render("auth/signup")
+  res.render("auth/signup", {title2: "Signup"})
 });
 
 router.post(PATHS.SIGNUP_PATH, upload.single('avatar'), ensureLoggedOut(), (req, res, next) => {
@@ -52,15 +52,15 @@ router.post(PATHS.SIGNUP_PATH, upload.single('avatar'), ensureLoggedOut(), (req,
 });
 
 router.get(PATHS.LOGIN_PATH, ensureLoggedOut(), (req,res) =>{
-  res.render('auth/login')
+  res.render('auth/login',  {title3: "Login"})
 });
 
 router.get(PATHS.DASBOARD_PATH, ensureLoggedIn(), (req,res) =>{
-  res.render('profile/dasboard', {user:req.user})
+  res.render('profile/dasboard')
 });
 
 router.post(PATHS.LOGIN_PATH, ensureLoggedOut(), passport.authenticate("local", {
-  successRedirect: PATHS.DASBOARD_PATH,
+  successRedirect: PATHS.ROOT_PATH,
   failureRedirect: PATHS.LOGIN_PATH,
   failureFlash: true,
   passReqToCallback: true
@@ -69,19 +69,29 @@ router.post(PATHS.LOGIN_PATH, ensureLoggedOut(), passport.authenticate("local", 
 router.get(PATHS.LOGOUT_PATH, ensureLoggedIn(), (req,res) =>{
   req.logout()
   res.redirect(PATHS.ROOT_PATH)
+})
+
+//mostrar usuario
+router.get('/:id', (req, res, next) => {
+  const userId = req.params.id
+  User.findById(userId)
+  .then( user => {
+    res.render('profile/dasboard',{user: user})
+  })
+  .catch( err => next(err) )
 });
 
 // UPDATE: Print update form
-router.get('/:id/edit', (req, res, next) => {
+router.get('/:id/edit', ensureLoggedIn(), (req, res, next) => {
   const userId = req.params.id
   User.findById(userId, (err, user) => {
     if (err) { return next(err) }
-    res.render('profile/user_edit', { title:'Edit form', user: user })
+    res.render('profile/user_edit', { titleE:'Edit form', user: user })
   });
 });
 
 // UPDATE: Update the object on DB
-router.post('/:id/edit', upload.single('avatar'), (req, res, next) => {
+router.post('/:id/edit', ensureLoggedIn(), upload.single('avatar'), (req, res, next) => {
   const userId = req.params.id
   const updates = {
     first_name: req.body.first_name,
@@ -97,7 +107,7 @@ router.post('/:id/edit', upload.single('avatar'), (req, res, next) => {
   })
 })
 
-router.post('/', function(req, res, next){
+router.post('/', ensureLoggedIn(), function(req, res, next){
   var input = req.body.search
   res.redirect('/');
 })

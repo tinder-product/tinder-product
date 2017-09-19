@@ -1,8 +1,9 @@
 <h2><%= product.name %></h2>
 
 <div>
-  <img src="<%= product.avatar %>" alt="">
+  <img src="<%= product.avatar %>" alt="" style="height:200px; width:200px">
 </div>
 <div>
   <%= product.description %>
+  <a href="/<%= product.user_id %>">User</a>
 </div>

@@ -1,4 +1,4 @@
-<h2>Signup</h2>
+<h2><%= title2%></h2>
 
 <form action="/signup" method="POST" id="form-container" enctype="multipart/form-data">
 
@@ -16,9 +16,7 @@
   <br><br>
   <label for="password">Password</label>
   <input id="password" type="password" name="password" placeholder="Your password">
-  <br><br>
-  <label for="phone">Phone</label>
-  <input id="phone" type="number" name="phone">
+
 
   <% if (typeof message !== "undefined") { %>
     <div class="error-message"><%= message %></div>

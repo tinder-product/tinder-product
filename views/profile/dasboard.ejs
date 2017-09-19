@@ -1,6 +1,6 @@
 <div>
   <ul>
-    <img src="<%= user.avatar %>" alt="" style="height:100px; width:100px">
+    <img src="<%= user.avatar %>" alt="" style="height:200px; width:200px">
     <li>first name: <%= user.first_name %></li>
     <li>last name: <%= user.last_name %></li>
     <li>usermane: <%= user.username %></li>
@@ -8,7 +8,10 @@
     <li>phone: <%= user.phone %></li>
 
   </ul>
-
+  <% if(user){ %>
   <a href="/products">lista products</a>
   <a href="/<%= user._id %>/edit/">Edit profile</a>
+  <% }else{ %>
+  <a href="/">volver</a>
+  <%}%>
 </div>
