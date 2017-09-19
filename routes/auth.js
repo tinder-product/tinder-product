@@ -73,7 +73,7 @@ router.get('/:id', (req, res, next) => {
   const userId = req.params.id
   User.findById(userId)
   .then( user => {
-    res.render('profile/dasboard',{user: user})
+    res.render('profile/dasboard',{userOwner: user})
   })
   .catch( err => next(err) )
 });
