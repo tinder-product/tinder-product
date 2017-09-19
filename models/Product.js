@@ -2,10 +2,11 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const ProductSchema = new Schema({
-  // user_id: String,
   name: String,
   avatar: String,
-  description: String
+  description: String,
+  user_id:String,
+  user_name: String
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
 });

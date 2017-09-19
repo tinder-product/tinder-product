@@ -6,10 +6,16 @@ if (process.env.NODE_ENV === 'development') {
 }
 mongoose.connect(process.env.MONGODB_URI)
 
-require('./config/express')(app)
 require('./config/session')(app)
+require('./config/express')(app)
 require('./passport/serializers')
 require('./passport/local')
+
+app.use((req, res, next) => {
+    res.locals.user = req.user;
+    console.log(req.user)
+    next();
+});
 
 const index = require('./routes/index')
 const auth = require('./routes/auth')

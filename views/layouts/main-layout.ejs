@@ -6,6 +6,14 @@
     <link rel="stylesheet" href="stylesheets/style.css">
   </head>
   <body>
+    <h1><%= title %></h1>
+    <% if(user){ %>
+      <a href="/logout">Logout</a>
+      <a href="/dasboard">My profile</a>
+    <% }else{ %>
+      <a href="/signup">signup</a>
+      <a href="/login">Login</a>
+    <% } %>
     <%- body %>
   </body>
 </html>

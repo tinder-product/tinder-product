@@ -1,5 +1,11 @@
-<h1><%= title %></h1>
-<p>Welcome to <%= title %></p>
 
-<a href="/signup">signup</a>
-<a href="/login">Login</a>
+<div>
+  <h2>List of products</h2>
+  <ul>
+    <% products.forEach( e => { %>
+      <li>
+        <a href="/products/<%= e._id %>"><%= e.name %></a> from <%= e.user_name %>
+      </li>
+    <% }) %>
+  </ul>
+</div>

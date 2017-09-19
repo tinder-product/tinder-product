@@ -1,15 +1,17 @@
 const express = require('express')
 const router = express.Router()
 const Product = require('../models/Product')
-const path       = require('path')
+const User = require('../models/User')
+const path = require('path')
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login')
-const multer     = require('multer')
-const destination= path.join(__dirname, "../public/avatar/")
-const upload     = multer({dest : destination})
+const multer = require('multer')
+const destination = path.join(__dirname, "../public/avatar/")
+const upload = multer({dest : destination})
 
 router.get('/products', ensureLoggedIn(), (req, res, next) => {
   const user = req.params
-  Product.find({})
+  const userId = req.user._id
+  Product.find({'user_id':userId})
   .then( response => {
     res.render('products/index', {title:'Lista de productos',products: response, user:user})
   })
@@ -22,13 +24,13 @@ router.get('/products/new', ensureLoggedIn(), (req, res, next) => {
 })
 
 router.post('/products/new', upload.single('avatar'), (req,res,next) =>{
-
   const productInfo = {
       name: req.body.name,
+      user_id: req.user._id,
       description: req.body.description,
+      user_name: req.user.username,
       avatar: `/avatar/${req.file.filename}`,
   }
-
   const newProduct = new Product(productInfo)
   newProduct.save()
   .then( response => { res.redirect('/products') })

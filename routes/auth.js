@@ -91,7 +91,6 @@ router.post('/:id/edit', upload.single('avatar'), (req, res, next) => {
     phone: req.body.phone,
     avatar: `/avatar/${req.file.filename}`
   }
-  console.log(updates.photo)
   User.findByIdAndUpdate(userId, updates, (err, product) => {
     if (err){ return next(err); }
     return res.redirect(PATHS.DASBOARD_PATH)
