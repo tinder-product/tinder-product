@@ -98,5 +98,10 @@ router.post('/:id/edit', upload.single('avatar'), (req, res, next) => {
   })
 })
 
+router.post('/', function(req, res, next){
+  var input = req.body.search
+  res.redirect('/');
+})
+
 
 module.exports = router
