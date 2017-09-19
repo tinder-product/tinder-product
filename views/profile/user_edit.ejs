@@ -1,6 +1,6 @@
 <h2>Signup</h2>
 
-<form action="/<%= user._id %>/edit/" method="POST">
+<form action="/<%= user._id %>/edit/" method="POST" enctype="multipart/form-data">
 
   <label for="first_name">First Name</label>
   <input id="first_name" type="text" name="first_name" value="<%= user.first_name %>">
@@ -16,6 +16,10 @@
   <br><br>
   <label for="phone">Phone</label>
   <input id="phone" type="number" name="phone" value="<%= user.phone %>">
+  <br><br>
+  <label for="avatar">photo</label>
+  <input id="avatar" type="file" name="avatar" value="<%= user.avatar %>">
+
 
   <% if (typeof message !== "undefined") { %>
     <div class="error-message"><%= message %></div>

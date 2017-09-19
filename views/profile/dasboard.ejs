@@ -1,5 +1,5 @@
 <ul>
-  <img src="/avatar/<%= user.avatar %>" alt="" style="height:100px; width:100px">
+  <img src="<%= user.avatar %>" alt="" style="height:100px; width:100px">
   <li>first name: <%= user.first_name %></li>
   <li>last name: <%= user.last_name %></li>
   <li>usermane: <%= user.username %></li>
@@ -8,6 +8,6 @@
 
 </ul>
 
-<a href="/products">Creat products</a>
+<a href="/products">lista products</a>
 <a href="/logout">Logout</a>
 <a href="/<%= user._id %>/edit/">Edit</a>

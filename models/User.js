@@ -7,7 +7,7 @@ const userSchema = new Schema({
   username: String,
   email: String,
   password: String,
-  avatar: String,
+  avatar: {type: String, default: "http://via.placeholder.com/350x350"},
   phone: String,
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }

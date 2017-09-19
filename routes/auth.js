@@ -7,7 +7,7 @@ const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login')
 const User       = require("../models/User")
 const PATHS      = require("./paths")
 const multer     = require('multer')
-const destination= path.join(__dirname, "../public/avatar/")
+const destination= path.join(__dirname, "../public/avatar")
 const upload     = multer({dest : destination})
 
 router.get(PATHS.SIGNUP_PATH, ensureLoggedOut(), (req, res, next) => {
@@ -43,7 +43,6 @@ router.post(PATHS.SIGNUP_PATH, upload.single('avatar'), ensureLoggedOut(), (req,
       username: username,
       email: email,
       password: hashPass,
-      avatar: `${req.file.filename}`,
       phone: phone,
     })
     .save()
@@ -82,7 +81,7 @@ router.get('/:id/edit', (req, res, next) => {
 });
 
 // UPDATE: Update the object on DB
-router.post('/:id/edit', (req, res, next) => {
+router.post('/:id/edit', upload.single('avatar'), (req, res, next) => {
   const userId = req.params.id
   const updates = {
     first_name: req.body.first_name,
@@ -90,7 +89,9 @@ router.post('/:id/edit', (req, res, next) => {
     username: req.body.username,
     email: req.body.email,
     phone: req.body.phone,
-  };
+    avatar: `/avatar/${req.file.filename}`
+  }
+  console.log(updates.photo)
   User.findByIdAndUpdate(userId, updates, (err, product) => {
     if (err){ return next(err); }
     return res.redirect(PATHS.DASBOARD_PATH)
