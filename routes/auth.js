@@ -94,6 +94,8 @@ router.get('/:id/edit', ensureLoggedIn(), (req, res, next) => {
 router.post('/:id/edit', ensureLoggedIn(), upload.single('avatar'), (req, res, next) => {
   const userId = req.params.id
   const updates = {
+    lat: req.body.lat,
+    lon: req.body.lon,
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     username: req.body.username,
@@ -101,6 +103,7 @@ router.post('/:id/edit', ensureLoggedIn(), upload.single('avatar'), (req, res, n
     phone: req.body.phone,
     avatar: `/avatar/${req.file.filename}`
   }
+  console.log(updates);
   User.findByIdAndUpdate(userId, updates, (err, product) => {
     if (err){ return next(err); }
     return res.redirect(PATHS.DASBOARD_PATH)

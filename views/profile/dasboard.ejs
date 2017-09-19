@@ -1,13 +1,20 @@
 <div>
   <ul>
-    <img src="<%= userOwner.avatar %>" alt="" style="height:200px; width:200px">
-    <li>first name: <%= userOwner.first_name %></li>
-    <li>last name: <%= userOwner.last_name %></li>
-    <li>usermane: <%= userOwner.username %></li>
-    <li>email: <%= userOwner.email %></li>
-    <li>phone: <%= userOwner.phone %></li>
+    <img src="<%= user.avatar %>" alt="" style="height:200px; width:200px">
+    <li>first name: <%= user.first_name %></li>
+    <li>last name: <%= user.last_name %></li>
+    <li>usermane: <%= user.username %></li>
+    <li>email: <%= user.email %></li>
+    <li>phone: <%= user.phone %></li>
 
   </ul>
+  <div id="map" style="height:350px; width:100%"></div>
+
+  <script type="text/javascript">
+     var user = <%- JSON.stringify(user) %>;
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQ-v885dJaXvKNjk-ge5sbkuxWBg_LTD0&libraries=places"></script>
+  <script type="text/javascript" src="/javascripts/drawmap.js"></script>
   <% if(user){ %>
   <a href="/products">lista products</a>
   <a href="/<%= user._id %>/edit/">Edit profile</a>

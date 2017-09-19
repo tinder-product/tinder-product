@@ -6,6 +6,7 @@ const path = require('path');
 
 passport.use(new LocalStrategy((username, password, next) => {
   User.findOne({ username }, (err, user) => {
+console.log(user);
     if (err) {
       return next(err);
     }
