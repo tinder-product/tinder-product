@@ -10,18 +10,16 @@ const multer     = require('multer')
 const destination= path.join(__dirname, "../public/avatar")
 const upload     = multer({dest : destination})
 
-router.get(PATHS.SIGNUP_PATH, ensureLoggedOut(), (req, res, next) => {
+router.get('/signup',  ensureLoggedOut(), (req, res, next) => {
   res.render("auth/signup", {title2: "Signup"})
 });
 
-router.post(PATHS.SIGNUP_PATH, upload.single('avatar'), ensureLoggedOut(), (req, res, next) => {
+router.post('/signup', upload.single('avatar'), ensureLoggedOut(), (req, res, next) => {
   const first_name = req.body.first_name
   const last_name  = req.body.last_name
   const username   = req.body.username
   const email      = req.body.email
   const password   = req.body.password
-  const avatar     = req.body.avatar
-  const phone      = req.body.phone
 
   if (username === "" || password === "") {
     res.render("auth/signup", { message: "Indicate username and password" })
@@ -43,7 +41,6 @@ router.post(PATHS.SIGNUP_PATH, upload.single('avatar'), ensureLoggedOut(), (req,
       username: username,
       email: email,
       password: hashPass,
-      phone: phone,
     })
     .save()
     .then(user => res.redirect('/'))
@@ -51,11 +48,11 @@ router.post(PATHS.SIGNUP_PATH, upload.single('avatar'), ensureLoggedOut(), (req,
   });
 });
 
-router.get(PATHS.LOGIN_PATH, ensureLoggedOut(), (req,res) =>{
+router.get('/login', ensureLoggedOut(), (req,res) =>{
   res.render('auth/login',  {title3: "Login"})
 });
 
-router.get(PATHS.DASBOARD_PATH, ensureLoggedIn(), (req,res) =>{
+router.get('/profile', ensureLoggedIn(), (req,res) =>{
   res.render('profile/dasboard')
 });
 
