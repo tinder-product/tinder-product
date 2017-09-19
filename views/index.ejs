@@ -1,11 +1,14 @@
-
 <div>
   <h2>List of products</h2>
   <ul>
     <% products.forEach( e => { %>
       <li>
-        <a href="/products/<%= e._id %>"><%= e.name %></a> from <%= e.user_name %>
+        <a href="/products/<%= e._id %>">
+          <%= e.name %>
+        </a> from
+        <%= e.user_name %>
+          <button class="matchBtn" data-product="<%= e._id %>">Match</button>
       </li>
-    <% }) %>
+      <% }) %>
   </ul>
 </div>
