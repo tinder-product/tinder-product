@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const ProductSchema = new Schema({
+  lat: Number,
+  lon: Number,
   name: String,
   avatar: String,
   description: String,

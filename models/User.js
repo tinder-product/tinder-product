@@ -2,8 +2,6 @@ const mongoose = require("mongoose");
 const Schema   = mongoose.Schema;
 
 const userSchema = new Schema({
-  lat: Number,
-  lon: Number,
   first_name: String,
   last_name: String,
   username: String,

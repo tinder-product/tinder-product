@@ -15,6 +15,8 @@ router.get('/products/new', ensureLoggedIn(), (req, res, next) => {
 
 router.post('/products/new', upload.single('avatar'), (req,res,next) =>{
   const productInfo = {
+      lat: req.body.lat,
+      lon: req.body.lon,
       name: req.body.name,
       user_id: req.user._id,
       description: req.body.description,
@@ -50,10 +52,13 @@ router.post('/products/:id/edit', upload.single('avatar'), (req, res, next) => {
   const productId = req.params.id
 
   const updates = {
-        name: req.body.name,
-        description: req.body.description,
-        avatar: `/avatar/${req.file.filename}`
+    lat: req.body.lat,
+    lon: req.body.lon,
+    name: req.body.name,
+    description: req.body.description,
+    avatar: `/avatar/${req.file.filename}`
   }
+  console.log(updates);
   Product.findByIdAndUpdate(productId, updates)
   .then( response => { res.redirect(`/products/${productId}`) })
   .catch( err => next(err) )

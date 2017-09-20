@@ -10,6 +10,16 @@
   <label for="avatar">Avatar</label>
   <input id="avatar" type="file" name="avatar">
   <br><br>
-
+  <input  id="lat" name="lat" placeholder="Latitude" style="visibility:hidden">
+  <input  id="lon" name="lon" placeholder="Longitude" style="visibility:hidden">
+  <br><br>
 <button>Create product</button>
 </form>
+
+<input id="pac-input" class="controls" type="text"
+    placeholder="Enter a location">
+<div id="map" style="height:350px; width:100%"></div>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQ-v885dJaXvKNjk-ge5sbkuxWBg_LTD0&libraries=places"></script>
+<script type="text/javascript" src="/javascripts/map.js"></script>

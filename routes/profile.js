@@ -32,8 +32,6 @@ router.get('/profile/:id/edit', ensureLoggedIn(), (req, res, next) => {
 router.post('/profile/:id/edit', ensureLoggedIn(), upload.single('avatar'), (req, res, next) => {
   const userId = req.params.id
   const updates = {
-    lat: req.body.lat,
-    lon: req.body.lon,
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     username: req.body.username,

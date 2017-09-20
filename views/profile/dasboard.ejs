@@ -25,14 +25,5 @@
 
   <a href="/products/new/">Add product</a>
   <a href="/profile/<%= userOwner._id %>/edit/">Edit profile</a>
-  
-  <div id="map" style="height:350px; width:100%"></div>
-  <a href="/">volver</a>
-
-  <script type="text/javascript">
-     var userLocation = <%- JSON.stringify(userOwner) %>;
-  </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQ-v885dJaXvKNjk-ge5sbkuxWBg_LTD0&libraries=places"></script>
-  <script type="text/javascript" src="/javascripts/drawmap.js"></script>
 
 </div>

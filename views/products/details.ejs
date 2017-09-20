@@ -9,3 +9,11 @@
   <button class="matchBtn" data-product="<%= product.user_id %>">Match</button>
 
 </div>
+<div id="map" style="height:350px; width:100%"></div>
+<a href="/">volver</a>
+
+<script type="text/javascript">
+   var productLocation = <%- JSON.stringify(product) %>;
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQ-v885dJaXvKNjk-ge5sbkuxWBg_LTD0&libraries=places"></script>
+<script type="text/javascript" src="/javascripts/drawmap.js"></script>
