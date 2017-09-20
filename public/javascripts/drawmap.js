@@ -1,5 +1,5 @@
 function initMap() {
-  var myLatLng = {lat: userLocation.lat, lng: userLocation.lon};
+  var myLatLng = {lat: productLocation.lat, lng: productLocation.lon};
 
 
   var map = new google.maps.Map(document.getElementById('map'), {
