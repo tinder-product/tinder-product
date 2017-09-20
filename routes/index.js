@@ -7,7 +7,7 @@ const Match = require("../models/Match")
 router.get('/', (req, res, next) => {
   Product.find({})
   .then( response => {
-    res.render('index', {products: response, title2: 'Tinder product',  loggedUser:req.user})
+    res.render('index', {products: response, subtitle: 'Products',  loggedUser:req.user})
   }).catch( err => next(err) )
 
 });

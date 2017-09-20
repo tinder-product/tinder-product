@@ -19,9 +19,12 @@ app.use((req, res, next) => {
 const index = require('./routes/index')
 const auth = require('./routes/auth')
 const products = require('./routes/products')
+const profile = require('./routes/profile')
 app.use('/', index)
 app.use('/', auth)
+app.use('/', profile)
 app.use('/', products)
+
 
 require('./config/error-handler')(app)
 

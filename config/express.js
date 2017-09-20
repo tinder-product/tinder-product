@@ -15,7 +15,7 @@ module.exports = function (app){
   app.use(expressLayouts);
 
   app.use((req,res,next) =>{
-    res.locals.title = "tinder-product";
+    res.locals.title = "Change it!";
     next();
   });
 

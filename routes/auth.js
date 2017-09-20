@@ -1,14 +1,16 @@
-const bcrypt     = require("bcrypt")
+const bcrypt = require("bcrypt")
 const bcryptSalt = 10
-const path       = require('path')
-const passport   = require('passport')
-const router     = require('express').Router()
+const path = require('path')
+const passport = require('passport')
+const router = require('express').Router()
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login')
-const User       = require("../models/User")
-const PATHS      = require("./paths")
-const multer     = require('multer')
-const destination= path.join(__dirname, "../public/avatar")
-const upload     = multer({dest : destination})
+const User = require("../models/User")
+const multer = require('multer')
+const destination = path.join(__dirname, "../public/avatar")
+const upload = multer({dest : destination})
+
+
+
 
 router.get('/signup',  ensureLoggedOut(), (req, res, next) => {
   res.render("auth/signup", {title2: "Signup"})
@@ -52,62 +54,78 @@ router.get('/login', ensureLoggedOut(), (req,res) =>{
   res.render('auth/login',  {title3: "Login"})
 });
 
-router.get('/profile', ensureLoggedIn(), (req,res) =>{
-  res.render('profile/dasboard')
-});
-
-router.post(PATHS.LOGIN_PATH, ensureLoggedOut(), passport.authenticate("local", {
-  successRedirect: PATHS.ROOT_PATH,
-  failureRedirect: PATHS.LOGIN_PATH,
+router.post('/login', ensureLoggedOut(), passport.authenticate("local", {
+  successRedirect: '/',
+  failureRedirect: '/login',
   failureFlash: true,
   passReqToCallback: true
 }));
 
-router.get(PATHS.LOGOUT_PATH, ensureLoggedIn(), (req,res) =>{
+router.get('/logout', ensureLoggedIn(), (req,res) =>{
   req.logout()
-  res.redirect(PATHS.ROOT_PATH)
+  res.redirect('/')
 })
 
-//mostrar usuario
-router.get('/:id', (req, res, next) => {
-  const userId = req.params.id
-  User.findById(userId)
-  .then( user => {
-    res.render('profile/dasboard',{userOwner: user})
-  })
-  .catch( err => next(err) )
-});
+// router.post('/', ensureLoggedIn(), (req, res, next) => {
+//   var input = req.body.search
+//   res.redirect('/');
+// })
 
-// UPDATE: Print update form
-router.get('/:id/edit', ensureLoggedIn(), (req, res, next) => {
-  const userId = req.params.id
-  User.findById(userId, (err, user) => {
-    if (err) { return next(err) }
-    res.render('profile/user_edit', { titleE:'Edit form', user: user })
-  });
-});
-
-// UPDATE: Update the object on DB
-router.post('/:id/edit', ensureLoggedIn(), upload.single('avatar'), (req, res, next) => {
-  const userId = req.params.id
-  const updates = {
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    username: req.body.username,
-    email: req.body.email,
-    phone: req.body.phone,
-    avatar: `/avatar/${req.file.filename}`
-  }
-  User.findByIdAndUpdate(userId, updates, (err, product) => {
-    if (err){ return next(err); }
-    return res.redirect(PATHS.DASBOARD_PATH)
-  })
-})
-
-router.post('/', ensureLoggedIn(), function(req, res, next){
-  var input = req.body.search
-  res.redirect('/');
-})
+// router.get('/profile', ensureLoggedIn(), (req,res) =>{
+//   res.render('profile/dasboard')
+// });
+//
+// router.post(PATHS.LOGIN_PATH, ensureLoggedOut(), passport.authenticate("local", {
+//   successRedirect: PATHS.ROOT_PATH,
+//   failureRedirect: PATHS.LOGIN_PATH,
+//   failureFlash: true,
+//   passReqToCallback: true
+// }));
+//
+// router.get('/logout', ensureLoggedIn(), (req,res) =>{
+//   req.logout()
+//   res.redirect('/')
+// })
+//
+// //mostrar usuario
+// router.get('/profile/:id', (req, res, next) => {
+//   const userId = req.params.id
+//   User.findById(userId)
+//   .then( user => {
+//     console.log(user)
+//     res.render('profile/dasboard',{userOwner: user})
+//   })
+//   .catch( err => next(err) )
+// });
+//
+// // UPDATE
+// router.get('/profile/:id/edit', ensureLoggedIn(), (req, res, next) => {
+//   const userId = req.params.id
+//   User.findById(userId, (err, user) => {
+//     if (err) { return next(err) }
+//     res.render('profile/user_edit', { titleE:'Edit form', user: user })
+//   });
+// });
+//
+// router.post('/profile/:id/edit', ensureLoggedIn(), upload.single('avatar'), (req, res, next) => {
+//   const userId = req.params.id
+//   const updates = {
+//     first_name: req.body.first_name,
+//     last_name: req.body.last_name,
+//     username: req.body.username,
+//     email: req.body.email,
+//     phone: req.body.phone,
+//     avatar: `/avatar/${req.file.filename}`
+//   }
+//   User.findByIdAndUpdate(userId, updates)
+//   .then( response => res.redirect(`/profile/${userId}`))
+//   .catch( err => next(err))
+// })
+//
+// router.post('/', ensureLoggedIn(), (req, res, next) => {
+//   var input = req.body.search
+//   res.redirect('/');
+// })
 
 
 module.exports = router

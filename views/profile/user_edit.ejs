@@ -1,6 +1,6 @@
 <h2><%= titleE %></h2>
 
-<form action="/<%= user._id %>/edit/" method="POST" enctype="multipart/form-data">
+<form action="/profile/<%= user._id %>/edit/" method="POST" enctype="multipart/form-data">
 
   <label for="first_name">First Name</label>
   <input id="first_name" type="text" name="first_name" value="<%= user.first_name %>">
@@ -29,7 +29,7 @@
   <button>Edit account</button>
 
   <p class="account-message">
-    <a href="/profile">volver</a>
+    <a href="/profile/<%= user._id %>">volver</a>
     <a href="/">Home</a>
   </p>
 </form>
