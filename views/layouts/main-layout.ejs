@@ -4,19 +4,29 @@
     <meta charset="utf-8">
     <title><%= title %></title>
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
   </head>
   <body>
-    <h1><%= title %></h1>
-    <% if(user){ %>
-      <a href="/logout">Logout</a>
-      <a href="/profile/<%= user._id %>">My profile</a>
-    <% }else{ %>
-      <a href="/signup">signup</a>
-      <a href="/login">Login</a>
-    <% } %>
-    <%- body %>
+    <div class="container">
+      <div class="row">
+        <div class="col s8">
+            <h1><%= title %></h1>
+        </div>
+        <div class="col s4">
+          <% if(user){ %>
+            <a href="/logout" class="waves-effect waves-light btn">Logout</a>
+            <a href="/profile/<%= user._id %>" class="waves-effect waves-light btn">My profile</a>
+          <% }else{ %>
+            <a href="/signup" class="waves-effect waves-light btn">signup</a>
+            <a href="/login" class="waves-effect waves-light btn">Login</a>
+          <% } %>
+        </div>
+      </div>
+      <%- body %>
+    </div>
   </body>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="/javascripts/index.js"></script>
 
