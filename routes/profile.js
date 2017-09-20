@@ -18,21 +18,22 @@ router.get('/profile/:id', (req, res, next) => {
     Product.find({'user_id':userId})
     .then( response => {
       res.render('profile/dasboard',{subtitle:'List of products',userOwner: user, products: response})
-    })
-  })
+    }) })
   .catch( err => next(err) )
-});
+})
 
 router.get('/profile/:id/edit', ensureLoggedIn(), (req, res, next) => {
   const userId = req.params.id
   User.findById(userId)
-  .then( response => res.render('profile/user_edit', { titleE:'Edit profile', user: user }) )
+  .then( response => res.render('profile/user_edit', { titleE:'Edit profile', userOwner: response } ) )
   .catch( err => next(err) )
-});
+})
 
 router.post('/profile/:id/edit', ensureLoggedIn(), upload.single('avatar'), (req, res, next) => {
   const userId = req.params.id
   const updates = {
+    lat: req.body.lat,
+    lon: req.body.lon,
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     username: req.body.username,

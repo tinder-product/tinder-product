@@ -61,13 +61,9 @@ router.post('/products/:id/edit', upload.single('avatar'), (req, res, next) => {
 
 router.get('/products/:id/delete', ensureLoggedIn(), (req, res, next) => {
   const productId = req.params.id
-  if( req.params.user_id == req.user._id){
     Product.findByIdAndRemove(productId)
     .then( response => res.redirect(`/profile/${req.user._id}`))
     .catch( err => next(err))
-  }else{
-    return res.redirect('/')
-  }
 
 })
 

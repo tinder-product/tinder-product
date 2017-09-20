@@ -13,10 +13,11 @@ const upload = multer({dest : destination})
 
 
 router.get('/signup',  ensureLoggedOut(), (req, res, next) => {
-  res.render("auth/signup", {title2: "Signup"})
+  res.render("auth/signup", {subtitle: "Signup"})
 });
 
 router.post('/signup', upload.single('avatar'), ensureLoggedOut(), (req, res, next) => {
+
   const first_name = req.body.first_name
   const last_name  = req.body.last_name
   const username   = req.body.username
@@ -65,67 +66,6 @@ router.get('/logout', ensureLoggedIn(), (req,res) =>{
   req.logout()
   res.redirect('/')
 })
-
-// router.post('/', ensureLoggedIn(), (req, res, next) => {
-//   var input = req.body.search
-//   res.redirect('/');
-// })
-
-// router.get('/profile', ensureLoggedIn(), (req,res) =>{
-//   res.render('profile/dasboard')
-// });
-//
-// router.post(PATHS.LOGIN_PATH, ensureLoggedOut(), passport.authenticate("local", {
-//   successRedirect: PATHS.ROOT_PATH,
-//   failureRedirect: PATHS.LOGIN_PATH,
-//   failureFlash: true,
-//   passReqToCallback: true
-// }));
-//
-// router.get('/logout', ensureLoggedIn(), (req,res) =>{
-//   req.logout()
-//   res.redirect('/')
-// })
-//
-// //mostrar usuario
-// router.get('/profile/:id', (req, res, next) => {
-//   const userId = req.params.id
-//   User.findById(userId)
-//   .then( user => {
-//     console.log(user)
-//     res.render('profile/dasboard',{userOwner: user})
-//   })
-//   .catch( err => next(err) )
-// });
-//
-// // UPDATE
-// router.get('/profile/:id/edit', ensureLoggedIn(), (req, res, next) => {
-//   const userId = req.params.id
-//   User.findById(userId, (err, user) => {
-//     if (err) { return next(err) }
-//     res.render('profile/user_edit', { titleE:'Edit form', user: user })
-//   });
-// });
-//
-// router.post('/profile/:id/edit', ensureLoggedIn(), upload.single('avatar'), (req, res, next) => {
-//   const userId = req.params.id
-//   const updates = {
-//     first_name: req.body.first_name,
-//     last_name: req.body.last_name,
-//     username: req.body.username,
-//     email: req.body.email,
-//     phone: req.body.phone,
-//     avatar: `/avatar/${req.file.filename}`
-//   }
-//   User.findByIdAndUpdate(userId, updates)
-//   .then( response => res.redirect(`/profile/${userId}`))
-//   .catch( err => next(err))
-// })
-//
-// router.post('/', ensureLoggedIn(), (req, res, next) => {
-//   var input = req.body.search
-//   res.redirect('/');
-// })
 
 
 module.exports = router
