@@ -1,6 +1,5 @@
 const app       = require('express')()
 const mongoose  = require('mongoose')
-const Push = require('push.js')
 if (process.env.NODE_ENV === 'development') {
   require('dotenv').config()
 }
