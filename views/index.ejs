@@ -27,7 +27,7 @@
       <% notifications.forEach( e=> { %>
         <li>User <%= e.user_name  %> is interested in <a href="/products/<%= e.product_id %>">this product</a></li>
 
-          <button class="matchBtnSeen" data-product="<%= e._id %>" data-userproduct="<%= e.user_id %>" data-userproductname="<%= e.user_name %>">Match</button>
+          <button class="matchBtn" data-product="<%= e._id %>" data-userproduct="<%= e.user_id %>" data-userproductname="<%= e.user_name %>">Match</button>
 
       <% }) %>
     </ul>

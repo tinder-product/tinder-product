@@ -9,7 +9,6 @@ router.get('/', (req, res, next) => {
       if (req.user) {
         Match.find({ 'product_user': req.user._id })
           .then( matches => {
-            console.log(req.user)
             res.render('index', {
               products: product,
               subtitle: 'Products',
@@ -48,6 +47,7 @@ router.post('/', (req, res, next) => {
 
 
 router.post('/db', (req, res, next) => {
+
 
   new Match({
     user_id: req.user._id,
