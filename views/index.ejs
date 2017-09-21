@@ -3,15 +3,26 @@
     <input type="search" name="search"><br>
     <input type="submit" value="Submit" class="waves-effect waves-light btn">
   </form>
-  <h2><%= subtitle %></h2>
-  <ul>
-    <% products.forEach( e => { %>
-      <li>
-        <a href="/products/<%= e._id %>"> <%= e.name %></a> from
-        <%= e.user_name %>
-        <img src="<%= e.avatar%>" alt="">
-          <button class="matchBtn" data-product="<%= e._id %>">Match</button>
-      </li>
-      <% }) %>
-  </ul>
+</div>
+
+
+<div class="row">
+  <% products.forEach( e => { %>
+  <div class="col-sm-4">
+    <div class="card">
+        <div class="card-image">
+          <img src="<%= e.avatar%>">
+          <a class="btn-floating halfway-fab waves-effect waves-light btn"><i class="material-icons">M</i></a>
+        </div>
+        <div class="card-content">
+          <p>
+            <h5>
+              <a href="/products/<%= e._id %>"> <%= e.name %></a>
+            </h5>
+            <%= e.description%>
+          </p>
+        </div>
+    </div>
+  </div>
+  <% }) %>
 </div>
