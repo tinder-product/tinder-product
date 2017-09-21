@@ -9,6 +9,7 @@
       <li>
         <a href="/products/<%= e._id %>"> <%= e.name %></a> from
         <%= e.user_name %>
+        <img src="<%= e.avatar%>" alt="">
           <button class="matchBtn" data-product="<%= e._id %>">Match</button>
       </li>
       <% }) %>
