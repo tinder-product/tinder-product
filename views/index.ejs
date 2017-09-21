@@ -3,16 +3,36 @@
     <input type="search" name="search"><br>
     <input type="submit" value="Submit">
   </form>
+  <% if(user){ %>
+    <h2>Hi <%= user.username %></h2>
+  <% } %>
   <h2><%= subtitle %></h2>
-  <ul>
+    <ul>
     <% products.forEach( e => { %>
       <li>
         <a href="/products/<%= e._id %>">
           <%= e.name %>
         </a> from
         <%= e.user_name %>
-          <button class="matchBtn" data-product="<%= e._id %>">Match</button>
+          <% if( user && user._id != e.user_id){ %>
+            <button class="matchBtn" data-product="<%= e._id %>" data-userproduct="<%= e.user_id %>" data-userproductname="<%= e.user_name %>" >Match</button>
+          <% } %>
       </li>
       <% }) %>
   </ul>
+</div>
+<div>
+
+  <% if(user){ %>
+    <h2>Notifications</h2>
+    <ul>
+      <% notifications.forEach( e=> { %>
+        <li>User <%= e.user_name  %> is interested in <a href="/products/<%= e.product_id %>">this product</a></li>
+
+          <button class="matchBtnSeen" data-product="<%= e._id %>" data-userproduct="<%= e.user_id %>" data-userproductname="<%= e.user_name %>">Match</button>
+
+      <% }) %>
+    </ul>
+  <% } %>
+
 </div>
