@@ -1,11 +1,13 @@
 <div>
+  <form action="/" method="POST">
+    <input type="search" name="search"><br>
+    <input type="submit" value="Submit" class="waves-effect waves-light btn">
+  </form>
   <h2><%= subtitle %></h2>
   <ul>
     <% products.forEach( e => { %>
       <li>
-        <a href="/products/<%= e._id %>">
-          <%= e.name %>
-        </a> from
+        <a href="/products/<%= e._id %>"> <%= e.name %></a> from
         <%= e.user_name %>
           <button class="matchBtn" data-product="<%= e._id %>">Match</button>
       </li>
