@@ -3,26 +3,34 @@
     <input type="search" name="search"><br>
     <input type="submit" value="Submit" class="waves-effect waves-light btn">
   </form>
+  <% if(user){ %>
+    <h2>Hi <%= user.username %></h2>
+  <% } %>
+  <h2><%= subtitle %></h2>
+    <ul>
+    <% products.forEach( e => { %>
+      <li>
+        <a href="/products/<%= e._id %>"> <%= e.name %></a> from
+        <%= e.user_name %>
+          <% if( user && user._id != e.user_id){ %>
+            <button class="matchBtn" data-product="<%= e._id %>" data-userproduct="<%= e.user_id %>" data-userproductname="<%= e.user_name %>" >Match</button>
+          <% } %>
+      </li>
+      <% }) %>
+  </ul>
 </div>
+<div>
 
+  <% if(user){ %>
+    <h2>Notifications</h2>
+    <ul>
+      <% notifications.forEach( e=> { %>
+        <li>User <%= e.user_name  %> is interested in <a href="/products/<%= e.product_id %>">this product</a></li>
 
-<div class="row">
-  <% products.forEach( e => { %>
-  <div class="col-sm-4">
-    <div class="card">
-        <div class="card-image">
-          <img src="<%= e.avatar%>">
-          <a class="btn-floating halfway-fab waves-effect waves-light btn"><i class="material-icons">M</i></a>
-        </div>
-        <div class="card-content">
-          <p>
-            <h5>
-              <a href="/products/<%= e._id %>"> <%= e.name %></a>
-            </h5>
-            <%= e.description%>
-          </p>
-        </div>
-    </div>
-  </div>
-  <% }) %>
+          <button class="matchBtn" data-product="<%= e._id %>" data-userproduct="<%= e.user_id %>" data-userproductname="<%= e.user_name %>">Match</button>
+
+      <% }) %>
+    </ul>
+  <% } %>
+
 </div>

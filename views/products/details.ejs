@@ -6,7 +6,7 @@
 <div>
   <%= product.description %>
   <a href="/profile/<%= product.user_id %>">User</a>
-  <button class="matchBtn" data-product="<%= product.user_id %>">Match</button>
+  <button class="matchBtn" data-product="<%= product._id %>" data-userproduct="<%= product.user_id %>" data-userproduct="<%= product.user_name %>">Match</button>
 
 </div>
 <div id="map" style="height:350px; width:100%"></div>
