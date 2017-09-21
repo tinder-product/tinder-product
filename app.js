@@ -1,6 +1,6 @@
 const app       = require('express')()
 const mongoose  = require('mongoose')
-
+const Push = require('push.js')
 if (process.env.NODE_ENV === 'development') {
   require('dotenv').config()
 }
@@ -24,6 +24,7 @@ app.use('/', index)
 app.use('/', auth)
 app.use('/', profile)
 app.use('/', products)
+
 
 
 require('./config/error-handler')(app)

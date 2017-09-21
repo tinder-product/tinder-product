@@ -1,7 +1,7 @@
 <div>
   <form action="/" method="POST">
     <input type="search" name="search"><br>
-    <input type="submit" value="Submit">
+    <input type="submit" value="Submit" class="waves-effect waves-light btn">
   </form>
   <% if(user){ %>
     <h2>Hi <%= user.username %></h2>
@@ -10,9 +10,7 @@
     <ul>
     <% products.forEach( e => { %>
       <li>
-        <a href="/products/<%= e._id %>">
-          <%= e.name %>
-        </a> from
+        <a href="/products/<%= e._id %>"> <%= e.name %></a> from
         <%= e.user_name %>
           <% if( user && user._id != e.user_id){ %>
             <button class="matchBtn" data-product="<%= e._id %>" data-userproduct="<%= e.user_id %>" data-userproductname="<%= e.user_name %>" >Match</button>
