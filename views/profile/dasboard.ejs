@@ -4,8 +4,10 @@
     <li>first name: <%= userOwner.first_name %></li>
     <li>last name: <%= userOwner.last_name %></li>
     <li>usermane: <%= userOwner.username %></li>
-    <li>email: <%= userOwner.email %></li>
-    <li>phone: <%= userOwner.phone %></li>
+    <%if ((notifications.length!=0 && notifications[0].match) == true || userOwner.id == user.id){%>
+      <li>email: <%= userOwner.email %></li>
+      <li>phone: <%= userOwner.phone %></li>
+    <% } %>
 
   </ul>
 </div>

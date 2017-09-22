@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Product = require('../models/Product')
-// const User = require('../models/User')
+const Match = require('../models/Match')
 const path = require('path')
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login')
 const multer = require('multer')
@@ -32,7 +32,10 @@ router.post('/products/new', upload.single('avatar'), (req,res,next) =>{
 router.get('/products/:id', (req, res, next) => {
   const productId = req.params.id
   Product.findById(productId)
-  .then( response => { res.render('products/details',{product: response}) })
+  .then( response => {
+    Match.find({ 'product_user_id': req.user._id, 'product_id': productId})
+    .then( matches => { return res.render('products/details',{product: response, notifications:matches})  })
+  })
   .catch( err => next(err) )
 })
 

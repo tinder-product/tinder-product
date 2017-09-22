@@ -4,6 +4,7 @@ const router = require('express').Router()
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login')
 const User = require("../models/User")
 const Product = require("../models/Product")
+const Match = require("../models/Match")
 const PATHS = require("./paths")
 const multer = require('multer')
 const destination= path.join(__dirname, "../public/avatar")
@@ -17,7 +18,11 @@ router.get('/profile/:id', (req, res, next) => {
   .then( user => {
     Product.find({'user_id':userId})
     .then( response => {
-      res.render('profile/dasboard',{subtitle:'List of products',userOwner: user, products: response})
+      Match.find({ 'product_user_id': req.user._id, 'user_id': userId})
+      .then(matches => {
+        return res.render('profile/dasboard',{subtitle:'List of products',userOwner: user, products: response, notifications:matches})
+      })
+
     }) })
   .catch( err => next(err) )
 })

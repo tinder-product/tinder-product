@@ -58,7 +58,7 @@ router.get('/notifications', (req, res, next) => {
 router.post('/notifications', (req, res, next) => {
   console.log(req.body.productId, req.body.userName)
   const updates = {
-    match:false
+    match:true
   }
 
   Match.findOneAndUpdate({ 'user_name': req.body.userName, 'product_id': req.body.productId}, updates)
