@@ -1,12 +1,41 @@
-<div>
-  <form action="/" method="POST">
-    <input type="search" name="search"><br>
-    <input type="submit" value="Submit" class="waves-effect waves-light btn">
-  </form>
+<div class="row">
   <% if(user){ %>
-    <h2>Hi <%= user.username %></h2>
+    <div class="col s12">
+      <h2>Hi <%= user.username %></h2>
+    </div>
   <% } %>
-  <h2><%= subtitle %></h2>
+  <% products.forEach( e => { %>
+        <div class="col s4">
+          <div class="card">
+            <div class="card-image">
+              <img src="<%= e.avatar %>">
+              <span class="card-title"><%= e.name %></span>
+              <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+            </div>
+            <div class="card-content">
+              <p>
+                <a href="/products/<%= e._id %>"> <%= e.name %></a>
+                <%= e.user_name %>
+                <%= e.description %>
+              </p>
+            </div>
+          </div>
+        </div>
+  <% }) %>
+</div>
+
+
+
+
+
+
+
+
+<!-- <div class="row">
+
+
+  <div class="col s9">
+
     <ul>
     <% products.forEach( e => { %>
       <li>
@@ -20,6 +49,7 @@
   </ul>
 </div>
 <div>
+</div>
 
   <% if(user){ %>
     <h2>Notifications</h2>
@@ -33,4 +63,4 @@
     </ul>
   <% } %>
 
-</div>
+</div> -->

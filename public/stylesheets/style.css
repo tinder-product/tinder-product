@@ -1,8 +1,43 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 22px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.container {
+  width: 90%;
 }
 
 a {
   color: #00B7FF;
+}
+
+nav input[type=search]:not(.browser-default){
+  width: 60%;
+  padding-left: 10px;
+}
+
+
+nav{
+  background-color: red;
+  padding: 0 5%;
+}
+
+nav ul{
+  padding: 0 5px;
+}
+
+nav ul a{
+  font-size: 1.5rem;
+  margin-right: 5px;
+}
+
+.waves-input-wrapper{
+  vertical-align: top;
+}
+
+effect input[type="submit"]:focus{
+  outline: none;
+}
+
+card-content{
+  overflow: hidden;
 }
