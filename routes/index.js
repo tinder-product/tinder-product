@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
       if (req.user) {
         Match.find({ 'product_user_id': req.user._id }).count()
           .then( matches => {
-            console.log('notifications', matches)
+            res.locals.numMatches = matches
             res.render('index', { products: product, subtitle: 'Products', loggedUser: req.user, notifications: matches})
           }).catch(err => next(err))
       } else {
@@ -30,7 +30,6 @@ router.post('/', (req, res, next) => {
         loggedUser: req.user
       })
     }).catch(err => next(err))
-
 })
 
 

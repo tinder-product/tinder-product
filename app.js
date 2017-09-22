@@ -10,10 +10,10 @@ require('./config/express')(app)
 require('./passport/serializers')
 require('./passport/local')
 
-app.use((req, res, next) => {
-    res.locals.user = req.user;
-    next();
-});
+// app.use((req, res, next) => {
+//     res.locals.user = req.user;
+//     next();
+// });
 
 const index = require('./routes/index')
 const auth = require('./routes/auth')

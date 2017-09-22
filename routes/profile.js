@@ -22,8 +22,8 @@ router.get('/profile/:id', (req, res, next) => {
       .then(matches => {
         return res.render('profile/dasboard',{subtitle:'List of products',userOwner: user, products: response, notifications:matches})
       })
-
-    }) })
+    })
+  })
   .catch( err => next(err) )
 })
 
