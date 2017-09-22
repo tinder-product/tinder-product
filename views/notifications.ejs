@@ -1,0 +1,19 @@
+<h3><% subtitle %></h3>
+<div>
+  <ul>
+    <% notifications.forEach( e => { %>
+      <li><%= e.user_name %> is interested in <a href="/products/<%= e.product_id%> ">your product</a> </li>
+
+      <form action="/notifications" method="POST">
+        <input type="hidden" name="productId" value="<%= e.product_id%>">
+        <input type="hidden" name="userName" value="<%= e.user_name%>">
+
+        <% if(e.match === false){ console.log(e.match)%>
+          <input type="submit" value="Answer">
+        <% } %>
+
+      </form>
+
+    <% }) %>
+  </ul>
+</div>
