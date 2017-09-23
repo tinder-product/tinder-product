@@ -8,8 +8,11 @@
           <%= e.user_name %>
             <%= e.description %>
         </p>
-        <button class="matchBtn" data-product="<%= e._id %>" data-userproduct="<%= e.user_id %>" data-userproductname="<%= e.user_name %>">Match</button>
+        <% if( user && user._id != e.user_id){ %>
+          <button class="matchBtn" data-product="<%= e._id %>" data-userproduct="<%= e.user_id %>" data-userproductname="<%= e.user_name %>" >Match</button>
+        <% } %>
       </div>
     </div>
     <% }) %>
-</div>
+
+    </div>

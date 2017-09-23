@@ -1,3 +1,4 @@
+
 <div class="row">
 
   <div class="col s12">
@@ -11,9 +12,10 @@
             <li>first name: <%= userOwner.first_name %></li>
             <li>last name: <%= userOwner.last_name %></li>
             <li>usermane: <%= userOwner.username %></li>
+                <%if ((notifications.length!=0 && notifications[0].match) == true || userOwner.id == user.id){%>
             <li>email: <%= userOwner.email %></li>
             <li>phone: <%= userOwner.phone %></li>
-
+    <% } %>
           </ul>
       </div>
     </div>
@@ -22,7 +24,6 @@
     <button class="btn waves-effect waves-light"><a href="/products/new/">Add product</a></button>
     <button class="btn waves-effect waves-light"><a href="/profile/<%= userOwner._id %>/edit/">Edit profile</a></button>
   </div>
-
   <h2><%= subtitle %></h2>
 
   <div class="row card-container">

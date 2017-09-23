@@ -1,28 +1,6 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <meta charset="utf-8">
-  <title>
-    <%= title %>
-  </title>
-  <link rel="stylesheet" href="/stylesheets/bootstrap.css">
-  <link rel="stylesheet" href="/stylesheets/style.css">
-  <script src="https://unpkg.com/masonry-layout@4.2.0/dist/masonry.pkgd.min.js" charset="utf-8"></script>
-</head>
-
-<body>
-  <nav class="navbar navbar-default" role="navigation">
-
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-      <span class="sr-only">Desplegar navegación</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    </div>
-
     <div class="collapse navbar-collapse navbar-ex1-collapse">
 
       <form class="navbar-form navbar-left" role="search" action="/" method="POST">
@@ -43,6 +21,11 @@
         <% } %>
       </ul>
     </div>
+    <div class="col s12 center-align notifications">
+      <% if(user){ %>
+        <h3><a href="/notifications"><%= numMatches %></a></h3>
+      <% } %>
+    </div>
   </nav>
   <div class="container">
 
@@ -57,8 +40,6 @@
   </script>
 </body>
 
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/javascripts/index.js"></script>
 <script src="/javascripts/jquery-3.2.1.min.js"></script>
 <script src="/javascripts/bootstrap.min.js"></script>
