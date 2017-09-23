@@ -7,7 +7,6 @@ const bodyParser     = require('body-parser')
 const mongoose       = require('mongoose')
 const Match = require("../models/Match")
 
-
 module.exports = (app) => {
 
   app.set('views', path.join(__dirname, '../views'))
@@ -15,14 +14,17 @@ module.exports = (app) => {
   app.set('layout', 'layouts/main-layout')
   app.use(expressLayouts)
 
-  app.use((req,res,next) =>{
+  app.use((req, res, next) =>{
     res.locals.title = "Change it!"
     res.locals.user = req.user
-    Match.find({ 'product_user_id': req.user._id }).count()
-      .then( matches => {
-        res.locals.numMatches = matches
-        next()
-      })
+    if(req.user){
+      Match.find({ 'product_user_id': req.user._id }).count()
+        .then( matches => {
+          res.locals.numMatches = matches
+          next()
+        })
+    } else
+      next()
   })
 
   app.use(logger('dev'))
