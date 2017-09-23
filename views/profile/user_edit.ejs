@@ -1,5 +1,9 @@
-<h2><%= title %></h2>
-
+<div class="row">
+  <div class="col s12 center-align">
+  <h3><%= title %></h3>
+  </div>
+  <div class="col s3"></div>
+  <div class="col s6">
 <form action="/profile/<%= userOwner._id %>/edit/" method="POST" enctype="multipart/form-data">
 
   <label for="first_name">First Name</label>
@@ -26,10 +30,11 @@
   <% } %>
   <br><br>
 
-  <button>Edit account</button>
+  <button class="btn waves-effect waves-light">Edit account</button>
 
   <p class="account-message">
     <a href="/profile/<%= userOwner._id %>">volver</a>
     <a href="/">Home</a>
   </p>
 </form>
+</div>

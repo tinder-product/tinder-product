@@ -1,66 +1,15 @@
-<div class="row">
-  <% if(user){ %>
-    <div class="col s12">
-      <h2>Hi <%= user.username %></h2>
-    </div>
-  <% } %>
+<div class="row card-container">
   <% products.forEach( e => { %>
-        <div class="col s4">
-          <div class="card">
-            <div class="card-image">
-              <img src="<%= e.avatar %>">
-              <span class="card-title"><%= e.name %></span>
-              <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-            </div>
-            <div class="card-content">
-              <p>
-                <a href="/products/<%= e._id %>"> <%= e.name %></a>
-                <%= e.user_name %>
-                <%= e.description %>
-              </p>
-            </div>
-          </div>
-        </div>
-  <% }) %>
+    <div class="card col-4 col-md-3">
+      <img class="card-img-top" src="<%= e.avatar %>" alt="Card image cap">
+      <div class="card-block">
+        <h4 class="card-title"><a href="/products/<%= e._id %>"> <%= e.name %></a></h4>
+        <p class="card-text">
+          <%= e.user_name %>
+            <%= e.description %>
+        </p>
+        <button class="matchBtn" data-product="<%= e._id %>" data-userproduct="<%= e.user_id %>" data-userproductname="<%= e.user_name %>">Match</button>
+      </div>
+    </div>
+    <% }) %>
 </div>
-
-
-
-
-
-
-
-
-<!-- <div class="row">
-
-
-  <div class="col s9">
-
-    <ul>
-    <% products.forEach( e => { %>
-      <li>
-        <a href="/products/<%= e._id %>"> <%= e.name %></a> from
-        <%= e.user_name %>
-          <% if( user && user._id != e.user_id){ %>
-            <button class="matchBtn" data-product="<%= e._id %>" data-userproduct="<%= e.user_id %>" data-userproductname="<%= e.user_name %>" >Match</button>
-          <% } %>
-      </li>
-      <% }) %>
-  </ul>
-</div>
-<div>
-</div>
-
-  <% if(user){ %>
-    <h2>Notifications</h2>
-    <ul>
-      <% notifications.forEach( e=> { %>
-        <li>User <%= e.user_name  %> is interested in <a href="/products/<%= e.product_id %>">this product</a></li>
-
-          <button class="matchBtn" data-product="<%= e._id %>" data-userproduct="<%= e.user_id %>" data-userproductname="<%= e.user_name %>">Match</button>
-
-      <% }) %>
-    </ul>
-  <% } %>
-
-</div> -->

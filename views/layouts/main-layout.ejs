@@ -6,50 +6,61 @@
   <title>
     <%= title %>
   </title>
-  <link rel="stylesheet" href="/stylesheets/materialize.min.css">
+  <link rel="stylesheet" href="/stylesheets/bootstrap.css">
   <link rel="stylesheet" href="/stylesheets/style.css">
-
-
+  <script src="https://unpkg.com/masonry-layout@4.2.0/dist/masonry.pkgd.min.js" charset="utf-8"></script>
 </head>
 
 <body>
-    <nav>
-    <div class="nav-wrapper row">
-      <div class="col s6">
-        <form action="/" method="POST">
-          <input type="search" name="search">
-          <input type="submit" value="search" class="waves-effect waves-ligh">
-        </form>
-      </div>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
+  <nav class="navbar navbar-default" role="navigation">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Desplegar navegación</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    </div>
+
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+
+      <form class="navbar-form navbar-left" role="search" action="/" method="POST">
+        <input type="search" name="search">
+        <input type="submit" value="Search">
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
         <% if(user){ %>
-
-        <li><a href="/logout" class="btn btn-info">Logout</a></li>
-        <li><a href="/profile/<%= user._id %>" class="waves-effect waves-light btn">My profile</a></li>
+          <li><a href="/logout">Logout</a></li>
+          <li><a href="/profile/<%= user._id %>"><%= user.first_name %></a></li>
+          <!-- <li id="imgP" class="">
+            <img src="<%= user.avatar %>" alt="">
+          </li> -->
         <% }else{ %>
-
-        <li><a href="/signup">signup</a></li>
-        <li><a href="/login">Login</a></li>
+          <li><a href="/signup">Signup</a></li>
+          <li><a href="/login">Login</a></li>
         <% } %>
       </ul>
     </div>
   </nav>
   <div class="container">
 
-  <div class="row">
-      <div class="col s12 center-align">
-        <h1><%= title %></h1>
-      </div>
-    </div>
+
     <%- body %>
   </div>
+  <script type="text/javascript">
+  var elem = document.querySelector('.card-container');
+  var msnry = new Masonry( elem, {
+  itemSelector: '.card',
+  });
+  </script>
 </body>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/javascripts/index.js"></script>
-<script src="/javascripts/materialize.min.js"></script>
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-
+<script src="/javascripts/jquery-3.2.1.min.js"></script>
+<script src="/javascripts/bootstrap.min.js"></script>
 
 </html>

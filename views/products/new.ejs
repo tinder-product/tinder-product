@@ -1,24 +1,32 @@
-<h2><%= subtitle %></h2>
-<form action="/products/new" method="POST" id="form-products" enctype="multipart/form-data">
+<div class="row">
+  <h3><%= subtitle %></h3>
+  <div class="col s6">
+    <form action="/products/new" method="POST" id="form-products" enctype="multipart/form-data">
 
-  <label for="name">Name</label>
-  <input id="name" type="text" name="name" placeholder="Name">
-  <br><br>
-  <label for="description">Description</label>
-  <input id="description" type="text" name="description" placeholder="My product is...">
-  <br><br>
-  <label for="avatar">Avatar</label>
-  <input id="avatar" type="file" name="avatar">
-  <br><br>
-  <input  id="lat" name="lat" placeholder="Latitude" style="visibility:hidden">
-  <input  id="lon" name="lon" placeholder="Longitude" style="visibility:hidden">
-  <br><br>
-<button>Create product</button>
-</form>
+      <label for="name">Name</label>
+      <input id="name" type="text" name="name" placeholder="Name">
+      <br><br>
+      <label for="description">Description</label>
+      <input id="description" type="text" name="description" placeholder="My product is...">
+      <br><br>
+      <label for="avatar">Avatar</label>
+      <input id="avatar" type="file" name="avatar">
+      <br><br>
+      <button class="btn waves-effect waves-light">Create product</button>
+      <input  id="lat" name="lat" placeholder="Latitude" style="visibility:hidden">
+      <input  id="lon" name="lon" placeholder="Longitude" style="visibility:hidden">
 
-<input id="pac-input" class="controls" type="text"
-    placeholder="Enter a location">
-<div id="map" style="height:350px; width:100%"></div>
+    </form>
+  </div>
+  <div class="col s6">
+    <input id="pac-input" class="controls" type="text"
+        placeholder="Enter a location">
+    <div id="map" style="height:350px; width:100%"></div>
+  </div>
+</div>
+
+
+
 
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQ-v885dJaXvKNjk-ge5sbkuxWBg_LTD0&libraries=places"></script>

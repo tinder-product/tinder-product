@@ -1,25 +1,33 @@
-<h2><%= title3 %></h2>
-
-<form action="/login" method="POST">
-
-  <label for="username">Username</label>
-  <input id="username" type="text" name="username" placeholder="JonSnow">
-  <br><br>
-
-  <label for="password">Password</label>
-  <input id="password" type="password" name="password" placeholder="Your password">
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
 
 
-  <% if (typeof message !== "undefined") { %>
-    <div class="error-message"><%= message %></div>
-  <% } %>
-  <br><br>
+    <h2 class="text-center"><%= title3 %></h2>
 
-  <button>login</button>
+    <form action="/login" method="POST" role="form">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input id="username" type="text" name="username" placeholder="JonSnow" class="form-control">
+      </div>
 
-  <p class="account-message">
-    Do you have not an account?
-    <a href="/signup">signup</a>
-    <a href="/">Home</a>
-  </p>
-</form>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" type="password" name="password" placeholder="Your password" class="form-control">
+      </div>
+
+      <% if (typeof message !== "undefined") { %>
+        <div class="error-message"><%= message %></div>
+      <% } %>
+
+    <button class="btn btn-primary btn-lg btn-block">Login</button>
+    <br>
+      <p class="account-message">
+          Do you have not an account?
+        <a href="/login">Signup</a>
+      </p>
+    </form>
+
+</div>
+<div class="col-md-3"></div>
+</div>
