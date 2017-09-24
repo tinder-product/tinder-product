@@ -38,7 +38,7 @@ module.exports = {
       })
       .save()
       .then(user => res.redirect('/'))
-      .catch(e => res.render("auth/signup", { message: "Something went wrong", subtitle: "Signup" }))
+      .catch(e => res.render("auth/signup", { message: "Something went wrong", subtitle: "Signup"} ) )
     });
   },
 
