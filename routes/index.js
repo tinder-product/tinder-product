@@ -15,5 +15,7 @@ router.get('/notifications', indexController.notificationsGet)
 
 router.post('/notifications', indexController.notificationsPost)
 
+router.get('/notifications/:id/delete', indexController.deleteNotificationsGet)
+
 
 module.exports = router

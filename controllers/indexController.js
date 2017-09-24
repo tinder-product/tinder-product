@@ -18,15 +18,25 @@ module.exports = {
   },
 
   matchPost: (req, res, next) => {
-    new Match({
-      user_id: req.user._id,
-      user_name: req.user.username,
-      product_id: req.body.productId,
-      product_user_id: req.body.productUser,
-      product_user_name: req.body.productUserName,
-    }).save().then(response => {
-      // console.log(response)
+    Match.find({ 'user_id': req.user._id , 'product_id': req.body.productId })
+    .then( response => {
+      if(response.length == 0){
+        new Match({
+          user_id: req.user._id,
+          user_name: req.user.username,
+          product_id: req.body.productId,
+          product_user_id: req.body.productUser,
+          product_user_name: req.body.productUserName,
+        }).save().then(response => {
+          // console.log(response)
+        })
+      }else{
+        res.redirect('/');
+      }
+      console.log(response)
     })
+    .catch(err => next(err))
+
   },
 
   notificationsGet: (req, res, next) => {
@@ -46,5 +56,12 @@ module.exports = {
     .catch( err => next(err))
   },
 
+  deleteNotificationsGet: (req, res, next) => {
+    const matchId = req.params.id
+    console.log('holi:',matchId)
+    Match.findByIdAndRemove(matchId)
+    .then( response => res.redirect('/notifications'))
+    .catch( err => next(err))
+  }
 
 }

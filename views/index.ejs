@@ -1,18 +1,43 @@
-<div class="row card-container">
-  <% products.forEach( e => { %>
-    <div class="card col-4 col-md-3">
-      <img class="card-img-top" src="<%= e.avatar %>" alt="Card image cap">
-      <div class="card-block">
-        <h4 class="card-title"><a href="/products/<%= e._id %>"> <%= e.name %></a></h4>
-        <p class="card-text">
-          <%= e.user_name %>
+<div class="container">
+  <div class="row card-container">
+    <% products.forEach( e => { %>
+      <div class="card col-4 col-md-3">
+        <img class="card-img-top" src="<%= e.avatar %>" alt="Card image cap">
+        <div class="card-block">
+          <h4 class="card-title"><a href="/products/<%= e._id %>"> <%= e.name %></a></h4>
+          <p class="card-text">
             <%= e.description %>
-        </p>
-        <% if( user && user._id != e.user_id){ %>
-          <button class="matchBtn" data-product="<%= e._id %>" data-userproduct="<%= e.user_id %>" data-userproductname="<%= e.user_name %>" >Match</button>
-        <% } %>
-      </div>
-    </div>
-    <% }) %>
+          </p>
+          <% if( user && user._id != e.user_id){ %>
+            <button class="matchBtn btn" data-toggle="modal" data-target="#myModal" data-product="<%= e._id %>" data-userproduct="<%= e.user_id %>" data-userproductname="<%= e.user_name %>">Match</button>
 
-    </div>
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Congrats! You have send a Match to <%= e.user_name %></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+          <% } %>
+        </div>
+        <div class="user-info">
+          <div class="user-img">
+            <img class="img-circle" src="<%= e.user_avatar %>" alt="">
+          </div>
+          <div class="user-name">
+            <a href="/profile/<%= e.user_id %>">
+              <%= e.user_name %>
+            </a>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+  </div>
+</div>

@@ -16,7 +16,7 @@ module.exports = {
       .then( response => {
         Match.find({ 'product_user_id': req.user._id, 'user_id': userId})
         .then(matches => {
-          return res.render('profile/dasboard',{subtitle:'List of products',userOwner: user, products: response, notifications:matches})
+          return res.render('profile/dasboard',{subtitle:'My products',userOwner: user, products: response, notifications:matches})
         })
       })
     })
@@ -25,24 +25,33 @@ module.exports = {
 
   editProfileGet: (req, res, next) => {
     const userId = req.params.id
-    User.findById(userId)
-    .then( response => res.render('profile/user_edit', { titleE:'Edit profile', userOwner: response } ) )
-    .catch( err => next(err) )
+    console.log('hli:',userId, req.user._id)
+    if(userId == req.user._id){
+      User.findById(userId)
+      .then( response => res.render('profile/user_edit', { titleE:'Edit profile', userOwner: response } ) )
+      .catch( err => next(err) )
+    }else{
+      res.redirect(`/profile/${userId}`)
+    }
   },
 
   editProfilePost: (req, res, next) => {
     const userId = req.params.id
-    const updates = {
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      username: req.body.username,
-      email: req.body.email,
-      phone: req.body.phone,
-      avatar: `/avatar/${req.file.filename}`
+    if(userId == req.user._id){
+      const updates = {
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        username: req.body.username,
+        email: req.body.email,
+        phone: req.body.phone,
+        avatar: `/avatar/${req.file.filename}`
+      }
+      User.findByIdAndUpdate(userId, updates)
+      .then( response => res.redirect(`/profile/${userId}`))
+      .catch( err => next(err))
+    }else{
+      res.redirect(`/profile/${userId}`)
     }
-    User.findByIdAndUpdate(userId, updates)
-    .then( response => res.redirect(`/profile/${userId}`))
-    .catch( err => next(err))
   }
 
 }

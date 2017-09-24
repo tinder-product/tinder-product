@@ -1,29 +1,33 @@
 
-<div class="row">
+<div class="container profile">
 
-  <div class="col s12">
-    <div class="card horizontal">
-      <div class="card-image">
-        <img src="<%= userOwner.avatar %>">
+
+  <div class="row">
+    <div class="thumbnail col-sm-12">
+      <div class="col-sm-4">
+        <img class ="img-responsive img-circle" src="<%= userOwner.avatar %>" alt="image-user">
       </div>
-      <div class="card-stacked">
-        <div class="card-content">
+      <div class="col-sm-8 info-user">
+          <h3>Contact</h3>
           <ul>
             <li>first name: <%= userOwner.first_name %></li>
             <li>last name: <%= userOwner.last_name %></li>
             <li>usermane: <%= userOwner.username %></li>
-                <%if ((notifications.length!=0 && notifications[0].match) == true || userOwner.id == user.id){%>
-            <li>email: <%= userOwner.email %></li>
-            <li>phone: <%= userOwner.phone %></li>
-    <% } %>
+            <%if ((notifications.length!=0 && notifications[0].match) == true || userOwner.id == user.id){%>
+              <li>email: <%= userOwner.email %></li>
+              <li>phone: <%= userOwner.phone %></li>
+            <% } %>
           </ul>
+            <a class="btn btn-primary" href="/profile/<%= userOwner._id %>/edit/">Edit profile</a>
+            <a class="btn btn-primary" href="/products/new/">Add product</a>
+
       </div>
     </div>
   </div>
-  <div class="horizontal">
-    <button class="btn waves-effect waves-light"><a href="/products/new/">Add product</a></button>
-    <button class="btn waves-effect waves-light"><a href="/profile/<%= userOwner._id %>/edit/">Edit profile</a></button>
-  </div>
+
+
+
+  <div class="col s12">
   <h2><%= subtitle %></h2>
 
   <div class="row card-container">
@@ -33,19 +37,17 @@
         <div class="card-block">
           <h4 class="card-title"><a href="/products/<%= e._id %>"> <%= e.name %></a></h4>
           <p class="card-text">
-            <%= e.user_name %>
-              <%= e.description %>
+            <%= e.description %>
           </p>
-          <button class="matchBtn" data-product="<%= e._id %>" data-userproduct="<%= e.user_id %>" data-userproductname="<%= e.user_name %>">Match</button>
+          <% if( user && user._id != e.user_id){ %>
+            <button class="matchBtn btn" data-product="<%= e._id %>" data-userproduct="<%= e.user_id %>" data-userproductname="<%= e.user_name %>">Match</button>
+          <% } else {%>
+            <a class="btn btn-primary" href="/products/<%= e._id %>/edit">Edit</a>
+            <a class="btn btn-primary" href="/products/<%= e._id %>/delete">Delete</a>
+          <% } %>
+
         </div>
       </div>
       <% }) %>
   </div>
-</div>
-
-</div>
-
-  <a href="/products/new/">Add product</a>
-  <a href="/profile/<%= userOwner._id %>/edit/">Edit profile</a>
-
 </div>
