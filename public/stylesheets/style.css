@@ -24,12 +24,26 @@ a {
 }
 
 .card{
-  padding: 25px;
-  left: 3%;
+  padding: 15px;
   border: 1px solid grey;
   border-radius: 5px;
 }
 
 .card img{
   width: 100%;
+}
+
+.card ul{
+  list-style: none;
+  padding-left: 0;
+}
+
+.user{
+  background-color: #f6f6cf;
+}
+
+input#pac-input{
+  width: 70%;
+  height: 8%;
+  top: 10px !important;
 }

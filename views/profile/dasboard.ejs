@@ -1,32 +1,36 @@
 
 <div class="row">
-
-  <div class="col s12">
-    <div class="card horizontal">
-      <div class="card-image">
+<div class="col-md-3">
+  <div class="card user">
         <img src="<%= userOwner.avatar %>">
-      </div>
-      <div class="card-stacked">
-        <div class="card-content">
-          <ul>
-            <li>first name: <%= userOwner.first_name %></li>
-            <li>last name: <%= userOwner.last_name %></li>
-            <li>usermane: <%= userOwner.username %></li>
-                <%if ((notifications.length!=0 && notifications[0].match) == true || userOwner.id == user.id){%>
-            <li>email: <%= userOwner.email %></li>
-            <li>phone: <%= userOwner.phone %></li>
-    <% } %>
-          </ul>
-      </div>
-    </div>
-  </div>
-  <div class="horizontal">
-    <button class="btn waves-effect waves-light"><a href="/products/new/">Add product</a></button>
-    <button class="btn waves-effect waves-light"><a href="/profile/<%= userOwner._id %>/edit/">Edit profile</a></button>
-  </div>
-  <h2><%= subtitle %></h2>
+        <div class="card-block">
+          <p class="card-text">
 
-  <div class="row card-container">
+          </p>
+          <ul>
+            <li><strong>First Name:</strong><%= userOwner.first_name %></li>
+            <li><strong>Last Name:</strong><%= userOwner.last_name %></li>
+            <li><strong>User Name:</strong><%= userOwner.username %></li>
+          <%if ((notifications.length!=0 && notifications[0].match) == true || userOwner.id == user.id){%>
+            <li><strong>Email:</strong><%= userOwner.email%></li>
+            <li><strong>Phone:</strong><%= userOwner.phone %></li>
+          <% } %>
+          </ul>
+
+        </div>
+        <div class="horizontal">
+          <button class="btn waves-effect waves-light"><a href="/products/new/">Add product</a></button>
+          <button class="btn waves-effect waves-light"><a href="/profile/<%= userOwner._id %>/edit/">Edit profile</a></button>
+        </div>
+      </div>
+      </div>
+
+
+
+
+
+  <div class=" col-md-9 card-container">
+    <div class="col-md-2"></div>
     <% products.forEach( e => { %>
       <div class="card col-4 col-md-3">
         <img class="card-img-top" src="<%= e.avatar %>" alt="Card image cap">
@@ -45,7 +49,5 @@
 
 </div>
 
-  <a href="/products/new/">Add product</a>
-  <a href="/profile/<%= userOwner._id %>/edit/">Edit profile</a>
 
 </div>
