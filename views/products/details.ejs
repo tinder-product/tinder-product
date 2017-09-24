@@ -1,19 +1,31 @@
-<h2><%= product.name %></h2>
+<div class="container">
+  <div class="thumbnail col-md-10 col-md-offset-1 new-product">
+    <div class="text-center">
+      <img class="img-responsive img-rounded center-block" src="<%= product.avatar %>" alt="" >
+      <h2><%= product.name %></h2>
+      <% if(notifications.length == 0){ %>
+        <button class="matchBtn btn btn-primary" data-product="<%= product._id %>" data-userproduct="<%= product.user_id %>" data-userproduct="<%= product.user_name %>">Match</button>
+      <%}%>
+    </div>
+    <div class="info-product col-md-10">
+      <h4>Description</h4>
+      <%= product.description %>
+    </div>
 
-<div>
-  <img src="<%= product.avatar %>" alt="" style="height:200px; width:200px">
+    <div class="user-info info-product col-md-2">
+        <img class="img-circle img-responsive center-block" src="<%= product.user_avatar %>" alt="">
+      <div class="user-name col-md-12 text-center">
+        <a href="/profile/<%= product.user_id %>">
+          <stron><%= product.user_name %></stron>
+        </a>
+      </div>
+    </div>
+
+    <div id="map" class="map img-rounded" style="height:350px; width:100%"></div>
+    <script type="text/javascript">
+       var productLocation = <%- JSON.stringify(product) %>;
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQ-v885dJaXvKNjk-ge5sbkuxWBg_LTD0&libraries=places"></script>
+    <script type="text/javascript" src="/javascripts/drawmap.js"></script>
+  </div>
 </div>
-<div>
-  <%= product.description %>
-  <a href="/profile/<%= product.user_id %>">User</a>
-  <button class="matchBtn" data-product="<%= product.user_id %>">Match</button>
-
-</div>
-<div id="map" style="height:350px; width:100%"></div>
-<a href="/">volver</a>
-
-<script type="text/javascript">
-   var productLocation = <%- JSON.stringify(product) %>;
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQ-v885dJaXvKNjk-ge5sbkuxWBg_LTD0&libraries=places"></script>
-<script type="text/javascript" src="/javascripts/drawmap.js"></script>

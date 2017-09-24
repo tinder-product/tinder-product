@@ -1,0 +1,31 @@
+<div class="container">
+
+  <div class="thumbnail col-md-10 col-md-offset-1 new-product">
+    <h2 class="text-center"><%= subtitle %></h2>
+    <div class="col-md-12 notifications">
+      <ul>
+        <% notifications.forEach( e => { %>
+          <div class="col-md-12">
+          <div class="col-md-6">
+            <li class="list-group-item"><a href="/profile/<%= e.user_id %>"><%= e.user_name %></a> is interested in <a href="/products/<%= e.product_id%> ">your product</a></li>
+          </div>
+          <div class="col-md-6 ">
+            <form action="/notifications" method="POST">
+              <input type="hidden" name="productId" value="<%= e.product_id%>">
+              <input type="hidden" name="userName" value="<%= e.user_name%>">
+
+              <% if(e.match === false){ console.log(e.match)%>
+              <input type="submit" class="btn btn-primary" value="Answer">
+              <% } %>
+              <a href="/notifications/<%= e._id%>/delete" class="btn btn-primary">Delete</a>
+            </form>
+
+          </div>
+        </div>
+
+
+        <% }) %>
+      </ul>
+    </div>
+  </div>
+</div>

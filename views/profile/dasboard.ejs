@@ -1,29 +1,62 @@
-<div>
-  <ul>
-    <img src="<%= userOwner.avatar %>" alt="" style="height:200px; width:200px">
-    <li>first name: <%= userOwner.first_name %></li>
-    <li>last name: <%= userOwner.last_name %></li>
-    <li>usermane: <%= userOwner.username %></li>
-    <li>email: <%= userOwner.email %></li>
-    <li>phone: <%= userOwner.phone %></li>
 
-  </ul>
-</div>
-<div>
+<div class="container profile">
+
+
+  <div class="row">
+    <div class="thumbnail col-sm-12">
+      <div class="col-sm-4">
+        <img class ="img-responsive img-circle" src="<%= userOwner.avatar %>" alt="image-user">
+      </div>
+      <div class="col-sm-8 info-user">
+          <h3>Contact</h3>
+          <ul>
+            <li>first name: <%= userOwner.first_name %></li>
+            <li>last name: <%= userOwner.last_name %></li>
+            <li>usermane: <%= userOwner.username %></li>
+            <%if (notifications.length!=0){%>
+              <%if ( notifications[0].match == true || userOwner.id == user.id){%>
+                <li>email: <%= userOwner.email %></li>
+                <li>phone: <%= userOwner.phone %></li>
+              <% } %>
+            <% } %>
+          </ul>
+
+
+          <%if (user){%>
+            <%if (userOwner._id == user.id){%>
+              <a class="btn btn-primary" href="/profile/<%= userOwner._id %>/edit/">Edit profile</a>
+              <a class="btn btn-primary" href="/products/new/">Add product</a>
+            <% } %>
+          <% } %>
+
+      </div>
+    </div>
+  </div>
+
+
+
   <h2><%= subtitle %></h2>
-  <ul>
-    <% products.forEach( e => { %>
-      <li> <%=e.name%>
-        <a href="/products/<%= e._id %>">View Details</a> |
-        <a href="/products/<%= e._id %>/edit/">Edit</a> |
-        <a href="/products/<%= e._id %>/delete/">Delete</a>
-      </li>
-    <% }) %>
-  </ul>
-</div>
-<div>
 
-  <a href="/products/new/">Add product</a>
-  <a href="/profile/<%= userOwner._id %>/edit/">Edit profile</a>
+  <div class=" row card-container">
+    <% products.forEach( e => { %>
+      <div class="card col-md-3">
+        <img class="card-img-top" src="<%= e.avatar %>" alt="Card image cap">
+        <div class="card-block">
+          <h4 class="card-title"><a href="/products/<%= e._id %>"> <%= e.name %></a></h4>
+          <p class="card-text">
+            <%= e.description %>
+          </p>
+          <% if( user ) { %>
+            <% if (user._id != e.user_id){ %>
+              <button class="matchBtn btn" data-product="<%= e._id %>" data-userproduct="<%= e.user_id %>" data-userproductname="<%= e.user_name %>">Match</button>
+            <% } else {%>
+              <a class="btn btn-primary" href="/products/<%= e._id %>/edit">Edit</a>
+              <a class="btn btn-primary" href="/products/<%= e._id %>/delete">Delete</a>
+            <% } %>
+          <% } %>
+
+        </div>
+      </div>
+      <% }) %>
 
 </div>
