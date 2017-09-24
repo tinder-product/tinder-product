@@ -18,7 +18,7 @@ module.exports = (app) => {
     res.locals.title = "Change it!"
     res.locals.user = req.user
     if(req.user){
-      Match.find({ 'product_user_id': req.user._id }).count()
+      Match.find({ 'product_user_id': req.user._id , 'match': false }).count()
         .then( matches => {
           res.locals.numMatches = matches
           next()

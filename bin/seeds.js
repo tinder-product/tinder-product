@@ -10,63 +10,63 @@ const hashPass = bcrypt.hashSync("1234", salt)
 
 const users = [
   {
-    first_name: "prueba1",
-    last_name: "prueba1",
-    username: "prueba1",
-    email: "prueba1",
+    first_name: "Verónica",
+    last_name: "González",
+    username: "veroglez",
+    email: "vero@gmail.com",
     password: hashPass,
     avatar: "http://via.placeholder.com/350x350",
     phone: "925641564"
   },
   {
-    first_name: "prueba2",
-    last_name: "prueba2",
-    username: "prueba2",
-    email: "prueba2",
+    first_name: "Santiago",
+    last_name: "Trigo",
+    username: "trigoporres",
+    email: "santi@gmail.com",
     password: hashPass,
     avatar: "http://via.placeholder.com/350x350",
     phone: "925641564"
   },
   {
-    first_name: "prueba3",
-    last_name: "prueba3",
-    username: "prueba3",
-    email: "prueba3",
+    first_name: "Victor",
+    last_name: "Rodriguez",
+    username: "victor.rodriguez",
+    email: "victor@gmail.com",
     password: hashPass,
     avatar: "http://via.placeholder.com/350x350",
     phone: "925641564"
   },
   {
-    first_name: "prueba4",
-    last_name: "prueba4",
-    username: "prueba4",
-    email: "prueba4",
+    first_name: "Andrei",
+    last_name: "Fernandez",
+    username: "Andrei94",
+    email: "andre@gmail.com",
     password: hashPass,
     avatar: "http://via.placeholder.com/350x350",
     phone: "925641564"
   },
   {
-    first_name: "prueba5",
-    last_name: "prueba5",
-    username: "prueba5",
-    email: "prueba5",
+    first_name: "Miguel",
+    last_name: "Moracho",
+    username: "xenock",
+    email: "miguel@gmail.com",
     password: hashPass,
     avatar: "http://via.placeholder.com/350x350",
     phone: "925641564"
   },
 ];
 
-const products = [
-  {
-    lat: 30522,
-    lon: 5215,
-    name: "moto",
-    avatar: "http://via.placeholder.com/350x350",
-    description: "moto",
-    user_id:"prueba1",
-    user_name: String
-  },
-]
+// const products = [
+//   {
+//     lat: 30522,
+//     lon: 5215,
+//     name: "moto",
+//     avatar: "http://via.placeholder.com/350x350",
+//     description: "moto",
+//     user_id:"prueba1",
+//     user_name: String
+//   },
+// ]
 
 user.create(users, (err, docs) => {
   if (err) {

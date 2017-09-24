@@ -17,6 +17,7 @@ module.exports = {
         lon: req.body.lon,
         name: req.body.name,
         user_id: req.user._id,
+        user_avatar: req.user.avatar,
         description: req.body.description,
         user_name: req.user.username,
         avatar: `/avatar/${req.file.filename}`,
@@ -31,7 +32,7 @@ module.exports = {
     const productId = req.params.id
     Product.findById(productId)
     .then( response => {
-      Match.find({ 'product_user_id': req.user._id, 'product_id': productId})
+      Match.find({'product_id': productId})
       .then( matches => { return res.render('products/details',{product: response, notifications:matches})  })
     })
     .catch( err => next(err) )

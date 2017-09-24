@@ -1,33 +1,42 @@
 
-<div class="row">
-<div class="col-md-3">
-  <div class="card user">
-        <img src="<%= userOwner.avatar %>">
-        <div class="card-block">
-          <p class="card-text">
+<div class="container profile">
 
-          </p>
+
+  <div class="row">
+    <div class="thumbnail col-sm-12">
+      <div class="col-sm-4">
+        <img class ="img-responsive img-circle" src="<%= userOwner.avatar %>" alt="image-user">
+      </div>
+      <div class="col-sm-8 info-user">
+          <h3>Contact</h3>
           <ul>
-            <li><strong>First Name:</strong><%= userOwner.first_name %></li>
-            <li><strong>Last Name:</strong><%= userOwner.last_name %></li>
-            <li><strong>User Name:</strong><%= userOwner.username %></li>
-          <%if ((notifications.length!=0 && notifications[0].match) == true || userOwner.id == user.id){%>
-            <li><strong>Email:</strong><%= userOwner.email%></li>
-            <li><strong>Phone:</strong><%= userOwner.phone %></li>
-          <% } %>
+            <li>first name: <%= userOwner.first_name %></li>
+            <li>last name: <%= userOwner.last_name %></li>
+            <li>usermane: <%= userOwner.username %></li>
+            <%if (notifications.length!=0){%>
+              <%if ( notifications[0].match == true || userOwner.id == user.id){%>
+                <li>email: <%= userOwner.email %></li>
+                <li>phone: <%= userOwner.phone %></li>
+              <% } %>
+            <% } %>
           </ul>
 
-        </div>
-        <div class="horizontal">
-          <button class="btn waves-effect waves-light"><a href="/products/new/">Add product</a></button>
-          <button class="btn waves-effect waves-light"><a href="/profile/<%= userOwner._id %>/edit/">Edit profile</a></button>
-        </div>
+
+          <%if (user){%>
+            <%if (userOwner._id == user.id){%>
+              <a class="btn btn-primary" href="/profile/<%= userOwner._id %>/edit/">Edit profile</a>
+              <a class="btn btn-primary" href="/products/new/">Add product</a>
+            <% } %>
+          <% } %>
+
       </div>
-      </div>
+    </div>
+  </div>
 
 
 
-
+  <div class="col s12">
+  <h2><%= subtitle %></h2>
 
   <div class=" col-md-9 card-container">
     <div class="col-md-2"></div>
@@ -37,17 +46,20 @@
         <div class="card-block">
           <h4 class="card-title"><a href="/products/<%= e._id %>"> <%= e.name %></a></h4>
           <p class="card-text">
-            <%= e.user_name %>
-              <%= e.description %>
+            <%= e.description %>
           </p>
-          <button class="matchBtn" data-product="<%= e._id %>" data-userproduct="<%= e.user_id %>" data-userproductname="<%= e.user_name %>">Match</button>
+          <% if( user ) { %>
+            <% if (user._id != e.user_id){ %>
+              <button class="matchBtn btn" data-product="<%= e._id %>" data-userproduct="<%= e.user_id %>" data-userproductname="<%= e.user_name %>">Match</button>
+            <% } else {%>
+              <a class="btn btn-primary" href="/products/<%= e._id %>/edit">Edit</a>
+              <a class="btn btn-primary" href="/products/<%= e._id %>/delete">Delete</a>
+            <% } %>
+          <% } %>
+
         </div>
       </div>
       <% }) %>
   </div>
 </div>
-
-</div>
-
-
 </div>

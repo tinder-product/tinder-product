@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800');
+
+$main-color: #f4442e;
+$title: #2d728f;
+$links-hover: #3b8ea5;
+$border: #e4e4e4;
+
+
+
+body {
+  font: 22px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #f9f9f9;
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.6rem
+
+}
+
+h1,h2,h3,h4,h5{
+  color: $title;
+  margin-bottom: 30px;
+}
+a {
+  color: $main-color;
+  text-transform: capitalize;
+  text-decoration: none;
+}
+a:hover{
+  color: $links-hover;
+  text-decoration: none;
+}
+.navbar-default .navbar-nav>li>a:hover{
+  color: $links-hover;
+}
+
+.btn-primary{
+  color: #fff;
+  background-color: $main-color;
+  border-color: $main-color;
+  border-radius: 50px;
+  padding: 10px 20px;
+    margin: 20px 0;
+}
+.container .btn-default{
+  color: #fff;
+  background-color: $main-color;
+  border-color: $main-color;
+  border-radius: 50px;
+  padding: 10px 20px;
+    margin: 20px 0;
+}
+.btn-primary:hover{
+  color:white;
+  background-color: $links-hover;
+  border-color: $links-hover;
+}
+.btn-default:hover{
+  border-color: $links-hover;
+  background-color: $links-hover;
+  color: white;
+}
+.matchBtn{
+  background: $main-color;
+  color: white;
+  border-radius: 20px;
+}
+.matchBtn:hover{
+  background: $links-hover;
+  color: white;
+}
+.matchBtn:focus, .btn-primary:focus, .btn:focus{
+  outline: 0;
+  color: white
+}
+
+.container{
+  box-sizing: border-box;
+  width: 80%;
+  margin-top: 50px;
+}
+
+#imgP{
+  width: 15%;
+  height: 15%;
+  border-radius: 50%;
+}
+
+#imgP img{
+  width: 100%;
+  height: 100%;
+  background-image: cover;
+}
+
+.card{
+  padding: 10px;
+  left: 3%;
+  border: 1px solid grey;
+  border-radius: 5px;
+  min-height: 400px;
+  margin:1%;
+  background: white;
+  border: 1px solid $border;
+  .user-info{
+    margin: 20px 10px;
+    border-top: 1px solid $border;
+    padding: 20px 0;
+    .user-img{
+      width: 30%;
+      float: left;
+      border-radius: 100px;
+      background: black
+    }
+    .user-name{
+      width: 70%; float: left;
+      padding-left: 10px;
+      a{
+        line-height: 3em
+      }
+
+    }
+  }
+  .card-block{
+    text-align: center;
+    h4{
+      padding: 20px 0 10px 0
+    }
+    p{
+      font-size: 1.5rem
+    }
+
+  }
+}
+.card-container .col-md-3{
+  width: 23%
+}
+
+.card img{
+  width: 100%;
+}
+
+nav img{
+  width: 150px;
+}
+.navbar{
+  margin-bottom: 0;
+}
+.navbar-brand{
+  padding: 5px 15px;
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form{
+  min-height: 40px;
+  padding: 5px 0;
+  background-color: white;
+
+}
+
+nav .form-control{
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+nav .btn-default{
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  background-color: #eee;
+  margin-left:-10px;
+}
+
+.navbar-default .navbar-nav > li > a{
+  color: $main-color;
+}
+
+.navbar-default .navbar-collapse{
+  padding: 5px 50px;
+}
+.notifications .col-md-12{
+  border-top: 1px solid $border;
+  padding-top: 20px;
+}
+.list-group-item{
+  border: 0px;
+}
+
+
+
+.map{
+  border: 1px solid $border;
+}
+.new-product .matchBtn{
+  border-radius: 50px;
+  font-size: 2rem;
+}
+.new-product .btn-primary{
+  margin: 0px 0 20px 0;
+}
+
+
+
+
+.profile{
+  .thumbnail{
+    padding: 50px;
+  }
+  .info-user{
+    padding-left: 50px;
+  }
+  ul{
+    list-style-type: none;
+    padding: 0;
+    li{
+      text-transform: capitalize;
+          padding-top: 10px;
+    }
+  }
+}
+
+.new-product{
+  padding: 30px 50px 50px ;
+}
+
+.controls{
+  display: block;
+    width: 50%;
+    height: 34px;
+    margin-top: 10px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid $border;
+    border-radius: 4px;
+}
+
+.info-product{
+  border-top: 1px solid $border;
+  padding: 30px 0;
+  margin-bottom: 20px;
+}
+
+.badge{
+  background-color: red;
+}

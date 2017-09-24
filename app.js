@@ -4,6 +4,10 @@ if (process.env.NODE_ENV === 'development')
   require('dotenv').config()
 
 mongoose.connect(process.env.MONGODB_URI)
+app.use((req,res,next) => {
+  res.locals.user = req.user;
+  next();
+});
 
 require('./config/session')(app)
 require('./config/express')(app)

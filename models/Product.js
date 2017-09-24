@@ -8,7 +8,8 @@ const ProductSchema = new Schema({
   avatar: String,
   description: String,
   user_id:String,
-  user_name: String
+  user_name: String,
+  user_avatar:String
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
 });
