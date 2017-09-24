@@ -5,7 +5,7 @@ $(document).ready(function() {
     var productId = $(this).data('product')
     var productUser = $(this).data('userproduct')
     var productUserName = $(this).data('userproductname')
-    $.post("http://localhost:3000/db", {productId: productId, productUser:productUser, productUserName:productUserName})
+    $.post("/db", {productId: productId, productUser:productUser, productUserName:productUserName})
       .then( console.log('holi'))
       .catch( err => { next(err)})
   })
