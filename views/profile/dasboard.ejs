@@ -13,13 +13,21 @@
             <li>first name: <%= userOwner.first_name %></li>
             <li>last name: <%= userOwner.last_name %></li>
             <li>usermane: <%= userOwner.username %></li>
-            <%if ((notifications.length!=0 && notifications[0].match) == true || userOwner.id == user.id){%>
-              <li>email: <%= userOwner.email %></li>
-              <li>phone: <%= userOwner.phone %></li>
+            <%if (notifications.length!=0){%>
+              <%if ( notifications[0].match == true || userOwner.id == user.id){%>
+                <li>email: <%= userOwner.email %></li>
+                <li>phone: <%= userOwner.phone %></li>
+              <% } %>
             <% } %>
           </ul>
-            <a class="btn btn-primary" href="/profile/<%= userOwner._id %>/edit/">Edit profile</a>
-            <a class="btn btn-primary" href="/products/new/">Add product</a>
+
+
+          <%if (user){%>
+            <%if (userOwner._id == user.id){%>
+              <a class="btn btn-primary" href="/profile/<%= userOwner._id %>/edit/">Edit profile</a>
+              <a class="btn btn-primary" href="/products/new/">Add product</a>
+            <% } %>
+          <% } %>
 
       </div>
     </div>
@@ -39,11 +47,13 @@
           <p class="card-text">
             <%= e.description %>
           </p>
-          <% if( user && user._id != e.user_id){ %>
-            <button class="matchBtn btn" data-product="<%= e._id %>" data-userproduct="<%= e.user_id %>" data-userproductname="<%= e.user_name %>">Match</button>
-          <% } else {%>
-            <a class="btn btn-primary" href="/products/<%= e._id %>/edit">Edit</a>
-            <a class="btn btn-primary" href="/products/<%= e._id %>/delete">Delete</a>
+          <% if( user ) { %>
+            <% if (user._id != e.user_id){ %>
+              <button class="matchBtn btn" data-product="<%= e._id %>" data-userproduct="<%= e.user_id %>" data-userproductname="<%= e.user_name %>">Match</button>
+            <% } else {%>
+              <a class="btn btn-primary" href="/products/<%= e._id %>/edit">Edit</a>
+              <a class="btn btn-primary" href="/products/<%= e._id %>/delete">Delete</a>
+            <% } %>
           <% } %>
 
         </div>
