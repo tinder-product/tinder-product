@@ -40,9 +40,9 @@
     <% } %>
 
 
-  <div class="row card-container">
+  <div class=" row card-container">
     <% products.forEach( e => { %>
-      <div class="card col-4 col-md-3">
+      <div class="card col-md-3">
         <img class="card-img-top" src="<%= e.avatar %>" alt="Card image cap">
         <div class="card-block">
           <h4 class="card-title"><a href="/products/<%= e._id %>"> <%= e.name %></a></h4>
@@ -75,5 +75,5 @@
         </div>
       </div>
       <% }) %>
-  </div>
+
 </div>

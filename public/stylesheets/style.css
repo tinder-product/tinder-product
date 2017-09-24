@@ -1,0 +1,49 @@
+body {
+  font: 22px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.container{
+  box-sizing: border-box;
+  width: 80%;
+}
+
+#imgP{
+  width: 15%;
+  height: 15%;
+  border-radius: 50%;
+}
+
+#imgP img{
+  width: 100%;
+  height: 100%;
+  background-image: cover;
+}
+
+.card{
+  padding: 15px;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+
+.card img{
+  width: 100%;
+}
+
+.card ul{
+  list-style: none;
+  padding-left: 0;
+}
+
+.user{
+  background-color: #f6f6cf;
+}
+
+input#pac-input{
+  width: 70%;
+  height: 8%;
+  top: 10px !important;
+}
