@@ -1,3 +1,15 @@
+<% if(banner){%>
+  <div class="banner parallax">
+    <div class="text">
+      <span style="font-family: 'Oswald', sans-serif; font-size: 6rem"> ... porque no tengo ni un duro ...</span>
+      <br>
+      <span style="font-family: 'Pacifico', cursive;">¿hacemos un trueque?</span>
+
+    </div>
+
+  </div>
+<% } %>
+
 <div class="container">
   <div class="row card-container">
     <% products.forEach( e => { %>
@@ -21,10 +33,6 @@
                 </div>
               </div>
             </div>
-
-
-
-
           <% } %>
         </div>
         <div class="user-info">

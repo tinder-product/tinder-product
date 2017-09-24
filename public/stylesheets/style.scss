@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800');
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+@import url('https://fonts.googleapis.com/css?family=Oswald:300');
+
+
 
 $main-color: #f4442e;
 $title: #2d728f;
@@ -8,7 +12,6 @@ $border: #e4e4e4;
 
 
 body {
-  font: 22px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #f9f9f9;
   font-family: 'Raleway', sans-serif;
   font-size: 1.6rem
@@ -107,7 +110,7 @@ a:hover{
       width: 30%;
       float: left;
       border-radius: 100px;
-      background: black
+      border: 1px solid $border;
     }
     .user-name{
       width: 70%; float: left;
@@ -243,4 +246,30 @@ nav .btn-default{
 
 .badge{
   background-color: red;
+}
+
+.banner{
+  background: url(/images/robots.png);
+     height: 700px;
+     background-size: cover;
+     display: flex
+
+}
+.parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.text{
+  // font-family: 'Pacifico', cursive;
+  color:white;
+  font-size: 9rem;
+  margin: auto;
+  text-align: center;
+}
+
+.subtitle{
+  // font-family: 'Pacifico', cursive;
+
 }

@@ -6,14 +6,14 @@ module.exports = {
   indexGet: (req, res, next) => {
     Product.find({})
     .then(product => {
-      res.render('index', {products: product, subtitle: 'Products' })
+      res.render('index', {products: product, subtitle: 'Products', banner:true})
     }).catch(err => next(err))
   },
 
   indexPost: (req, res, next) => {
     const re = new RegExp(req.body.search, 'i')
     Product.find({ "description": { $regex: re, $options: 'i' } })
-    .then(response => { res.render('index', {products: response, subtitle: 'Products'  }) })
+    .then(response => { res.render('index', {products: response, subtitle: 'Products', banner:false  }) })
     .catch(err => next(err))
   },
 
