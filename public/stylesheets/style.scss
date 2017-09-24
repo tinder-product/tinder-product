@@ -129,9 +129,22 @@ a:hover{
 
   }
 }
-.card-container .col-md-3{
-  width: 23%
+
+@media only screen and (min-width: 768px) {
+  .card-container .col-md-3{
+    width: 23%;
+  }
 }
+
+
+@media only screen and (max-width: 768px) {
+  .card-container .col-md-3{
+    width: 48%;
+  }
+}
+
+
+
 
 .card img{
   width: 100%;
