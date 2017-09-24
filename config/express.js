@@ -6,6 +6,7 @@ const cookieParser   = require('cookie-parser')
 const bodyParser     = require('body-parser')
 const mongoose       = require('mongoose')
 const Match = require("../models/Match")
+const flash = require("connect-flash");
 
 module.exports = (app) => {
 
@@ -14,6 +15,8 @@ module.exports = (app) => {
   app.set('layout', 'layouts/main-layout')
   app.use(expressLayouts)
 
+  app.use(flash());
+  
   app.use((req, res, next) =>{
     res.locals.title = "Change it!"
     res.locals.user = req.user
