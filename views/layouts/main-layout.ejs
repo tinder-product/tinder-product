@@ -7,10 +7,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="/javascripts/jquery-3.2.1.min.js"></script>
   <link rel="stylesheet" href="/stylesheets/style.min.css">
-
 </head>
 <body>
-
   <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -22,10 +20,7 @@
       </button>
       <a class="navbar-brand" href="/"><img src="/images/logo_changeit.png" alt=""></a>
     </div>
-
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-
       <form class="navbar-form navbar-left" role="search" action="/" method="POST">
         <div class="form-group">
           <input type="search" class="form-control" name="search" placeholder="Search products...">
@@ -33,10 +28,7 @@
             <span class="glyphicon glyphicon-search"></span>
           </button>
         </div>
-
       </form>
-
-
       <ul class="nav navbar-nav navbar-right">
         <% if(user){ %>
           <li><a href="/logout">Logout</a></li>
@@ -49,15 +41,9 @@
           <li><a href="/login">Login</a></li>
         <% } %>
       </ul>
-
     </div>
-
   </div>
-
 </nav>
-
-
-
   <%- body %>
   <script type="text/javascript">
     var elem = document.querySelector('.card-container');

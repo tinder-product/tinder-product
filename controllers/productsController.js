@@ -60,7 +60,6 @@ module.exports = {
       description: req.body.description,
       avatar: `/avatar/${req.file.filename}`
     }
-    console.log(updates);
     Product.findByIdAndUpdate(productId, updates)
     .then( response => { res.redirect(`/products/${productId}`) })
     .catch( err => next(err) )

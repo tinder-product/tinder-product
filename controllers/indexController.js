@@ -33,7 +33,6 @@ module.exports = {
       }else{
         res.redirect('/');
       }
-      console.log(response)
     })
     .catch(err => next(err))
 
@@ -46,7 +45,6 @@ module.exports = {
   },
 
   notificationsPost: (req, res, next) => {
-    console.log(req.body.productId, req.body.userName)
     const updates = {
       match:true
     }
@@ -58,7 +56,6 @@ module.exports = {
 
   deleteNotificationsGet: (req, res, next) => {
     const matchId = req.params.id
-    console.log('holi:',matchId)
     Match.findByIdAndRemove(matchId)
     .then( response => res.redirect('/notifications'))
     .catch( err => next(err))

@@ -1,9 +1,7 @@
 <div class="container">
-
   <div class="thumbnail col-md-10 col-md-offset-1 new-product">
   <h2 class="text-center"><%= subtitle %></h2>
     <div class="col-md-12">
-
       <form action="/products/<%= productId %>/edit" method="POST" id="form-products" enctype="multipart/form-data">
         <div class="form-group">
           <label for="name">Name</label>
@@ -17,8 +15,6 @@
           <label for="avatar">Photo</label>
           <input id="avatar" type="file" name="avatar" value="<%= product.avatar %>">
         </div>
-
-
         <button class="btn btn-primary">Modifty product</button>
         <input  id="lat" name="lat" placeholder="Latitude" style="visibility:hidden">
         <input  id="lon" name="lon" placeholder="Longitude" style="visibility:hidden">
@@ -26,7 +22,8 @@
       <input id="pac-input" class="controls" type="text"
           placeholder="Enter a location">
       <div id="map" class="map img-rounded" style="height:350px; width:100%"></div>
-
-
+    </div>
+  </div>
+</div>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQ-v885dJaXvKNjk-ge5sbkuxWBg_LTD0&libraries=places"></script>
 <script type="text/javascript" src="/javascripts/map.js"></script>

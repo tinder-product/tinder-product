@@ -14,18 +14,14 @@ module.exports = {
     .then( user => {
       Product.find({'user_id':userId})
       .then( response => {
-        console.log(req.user);
-        // console.log(userId, req.user.id)
         if(req.user){
           Match.find({ 'product_user_id': req.user._id, 'user_id': userId})
           .then(matches => {
             return res.render('profile/dasboard',{subtitle:'My products',userOwner: user, products: response, notifications:matches})
           })
-
         }else{
           return res.render('profile/dasboard',{subtitle:'My products',userOwner: user, products: response, notifications:[] })
         }
-
       })
     })
     .catch( err => next(err) )
@@ -33,7 +29,6 @@ module.exports = {
 
   editProfileGet: (req, res, next) => {
     const userId = req.params.id
-    console.log('hli:',userId, req.user._id)
     if(userId == req.user._id){
       User.findById(userId)
       .then( response => res.render('profile/user_edit', { titleE:'Edit profile', userOwner: response } ) )
